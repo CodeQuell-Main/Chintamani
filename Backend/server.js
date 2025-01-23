@@ -24,11 +24,14 @@ mongoose
 // Schemas
 const UserSchema = new mongoose.Schema({
     Name: { type: String, required: true },
-    Phone: { type: Number, required: true, unique: true },
-    Password: { type: String, required: true },
+    Email: { type: String}, // For Google users
+    Phone: { type: Number}, // Optional for Google users
+    Password: { type: String }, // Optional for Google users
     AddToCart: { type: [String], default: [] },
     Order: { type: [String], default: [] },
+    PhotoURL: { type: String }, // Optional profile photo URL
 });
+
 
 const ProductSchema = new mongoose.Schema({
     productId: { type: String },
@@ -103,6 +106,35 @@ app.get("/api/fetch-product/:productId", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+app.post("/api/google-auth", async (req, res) => {
+    const { name, email, photoURL } = req.body;
+
+    try {
+        // Check if the user already exists
+        let user = await User.findOne({ Email: email });
+
+        if (!user) {
+            // Create a new user if it doesn't exist
+            user = new User({
+                Name: name,
+                Email: email,
+                PhotoURL: photoURL, // You might want to add this field to the schema
+                AddToCart: [],
+                Order: [],
+            });
+            await user.save();
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ userId: user._id }, key, { expiresIn: "30d" });
+
+        res.status(200).json({ message: "Google authentication successful", token, user });
+    } catch (error) {
+        console.error("Error during Google authentication:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+
 
 // Sign-up
 app.post("/api/sign-up", async (req, res) => {
