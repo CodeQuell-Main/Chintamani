@@ -25,7 +25,6 @@ const Navbar = () => {
         <li className="text-black font-bold max-[900px]:hidden">
           <Link to="/profile" className="flex flex-col items-center justify-center">
             <img src="/images/Profile.svg" alt="Profile" className="w-16" />
-            Name
           </Link>
         </li>
       </ul>

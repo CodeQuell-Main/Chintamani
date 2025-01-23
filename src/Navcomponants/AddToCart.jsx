@@ -138,6 +138,7 @@ const AddToCart = () => {
                             )
                           }
                           min="1"
+                          max= "5"
                           className="w-14 text-center py-1 bg-[#B17457] text-white rounded-2xl"
                         />
                       </div>

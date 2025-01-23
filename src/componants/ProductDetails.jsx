@@ -139,7 +139,7 @@ const ProductDetails = () => {
                                   value={quantity} 
                                   onChange={handleQuantityChange} 
                                   min="1" 
-                                  max={product.stock} 
+                                  max="5" 
                                   className='w-14 text-center py-1 bg-[#B17457] text-white rounded-2xl'
                               />
                       </div>
