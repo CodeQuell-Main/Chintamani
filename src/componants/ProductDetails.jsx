@@ -4,14 +4,13 @@ import axios from 'axios';
 // import "../style/productdetail.css";
 
 const ProductDetails = () => {
-    const { productId } = useParams();  // Get productId from URL
+    const { productId } = useParams();
     const [product, setProduct] = useState(null);
-    const [quantity, setQuantity] = useState(1);  // Default quantity is 1
+    const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState('');
-    const [similarProducts, setSimilarProducts] = useState([]);
 
     // Fetch product details
     useEffect(() => {
@@ -19,7 +18,7 @@ const ProductDetails = () => {
             .get(`http://localhost:4000/api/fetch-product/${productId}`)
             .then((response) => {
                 setProduct(response.data);
-                setReviews(response.data.reviews || []); // Assuming reviews are part of the product response
+                setReviews(response.data.reviews || []);
                 setLoading(false);
             })
             .catch((err) => {
@@ -28,19 +27,7 @@ const ProductDetails = () => {
             });
     }, [productId]);
 
-    // Fetch similar products (assuming the backend supports fetching similar products)
-    useEffect(() => {
-        axios
-            .get(`http://localhost:4000/api/similar-products/${productId}`)
-            .then((response) => {
-                setSimilarProducts(response.data);
-            })
-            .catch((err) => {
-                console.error("Error fetching similar products:", err);
-            });
-    }, [productId]);
 
-    // Handle quantity change
     const handleQuantityChange = (e) => {
         setQuantity(e.target.value);
     };
@@ -101,6 +88,7 @@ const ProductDetails = () => {
             setError("Failed to submit review.");
         }
     };
+    
 
     if (loading) return <h1>Loading...</h1>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;

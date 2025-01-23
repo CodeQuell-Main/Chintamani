@@ -26,8 +26,8 @@ const UserSchema = new mongoose.Schema({
     Name: { type: String, required: true },
     Phone: { type: Number, required: true, unique: true },
     Password: { type: String, required: true },
-    AddToCart: { type: [String], default: [101, 102] },
-    Order: { type: [String], default: [101, 102] },
+    AddToCart: { type: [String], default: [] },
+    Order: { type: [String], default: [] },
 });
 
 const ProductSchema = new mongoose.Schema({
@@ -61,7 +61,7 @@ const authenticateToken = (req, res, next) => {
     }
 };
 
-// Add Products (Dynamic by Category)
+// Add Products 
 const addProducts = async (req, res, category, data) => {
     try {
         await Product.insertMany(data.map((item) => ({ ...item, Category: category })));
@@ -207,18 +207,17 @@ app.get("/api/fetch-last-orders", authenticateToken, async (req, res) => {
 });
 // Add product to user's cart (with authentication)
 app.post("/api/add-to-cart", authenticateToken, async (req, res) => {
-    const { productId } = req.body; // Get the productId from the request body
+    const { productId } = req.body;
 
     try {
-        const user = await User.findById(req.userId); // Fetch the user from the database
+        const user = await User.findById(req.userId); 
         if (!user) {
             return res.status(404).send("User not found");
         }
 
-        // Add the productId to the user's AddToCart array (if it's not already added)
         if (!user.AddToCart.includes(productId)) {
             user.AddToCart.push(productId);
-            await user.save(); // Save the updated user document
+            await user.save(); 
             return res.status(200).send("Product added to cart");
         } else {
             return res.status(400).send("Product is already in the cart");
@@ -228,25 +227,24 @@ app.post("/api/add-to-cart", authenticateToken, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-// Remove product from user's cart (with authentication)
+
+// Remove product from user's cart 
 app.post("/api/remove-from-cart", authenticateToken, async (req, res) => {
-    const { productId } = req.body; // Get the productId from the request body
+    const { productId } = req.body; 
 
     try {
-        const user = await User.findById(req.userId); // Fetch the user from the database
+        const user = await User.findById(req.userId); 
         if (!user) {
             return res.status(404).send("User not found");
         }
 
-        // Check if the product is in the cart
         const productIndex = user.AddToCart.indexOf(productId);
         if (productIndex === -1) {
             return res.status(400).send("Product is not in the cart");
         }
 
-        // Remove the product from the AddToCart array
         user.AddToCart.splice(productIndex, 1);
-        await user.save(); // Save the updated user document
+        await user.save();
         return res.status(200).send("Product removed from cart");
     } catch (error) {
         console.error("Error removing product from cart:", error);
@@ -255,6 +253,4 @@ app.post("/api/remove-from-cart", authenticateToken, async (req, res) => {
 });
 
 
-
-// Start server
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));

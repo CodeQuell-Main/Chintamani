@@ -20,7 +20,7 @@ const Home = () => {
             <li className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="/Home" className="">Home</Link></li>
             <li id='our_products' className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="" className="">Our Products</Link></li>
             <li className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="" className="">Contact</Link></li>
-            <li className="text-white font-semibold  text-2xl max-[900px]:hidden "><Link to='/login'><button className='bg-[#475AFF] hover:bg-[#3948ce] text-white text-xl py-2 px-10 rounded-2xl' type='button'>Log In</button></Link></li>
+            <li className="text-white font-semibold  text-2xl max-[900px]:hidden "><Link to='/profile'><button className='bg-[#475AFF] hover:bg-[#3948ce] text-white text-xl py-2 px-10 rounded-2xl' type='button'>Log In</button></Link></li>
           </ul>
         </nav>
 

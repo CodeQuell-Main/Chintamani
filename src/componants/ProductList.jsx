@@ -4,7 +4,7 @@ import axios from "axios";
 // import "../style/productlist.css";
 
 const ProductList = () => {
-    const { category } = useParams(); // Get category from the URL
+    const { category } = useParams(); 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -23,7 +23,7 @@ const ProductList = () => {
     }, [category]);
 
     const addToCart = async (productId) => {
-        const token = localStorage.getItem("token"); // Get token from local storage
+        const token = localStorage.getItem("token"); 
         if (!token) {
             setError("Please sign in to add items to your cart.");
             return;
@@ -60,14 +60,7 @@ const ProductList = () => {
                             className="w-60 border-black border-2 rounded-2xl p-2 shadow-lg"
                         />
                         <h3 className="marathi mt-2">{product.productName}</h3>
-                        {/* <p>{product.productDetail}</p> */}
                         <div className=" mt-0">
-                            {/* <button
-                                className="addtocart"
-                                onClick={() => addToCart(product.productId)}
-                            >
-                                Add To Cart
-                            </button> */}
                             <Link
                                 to={`/products/details/${product.productId}`}
                                 className="view-details"

@@ -23,7 +23,7 @@ const Navbar = () => {
           <Link to="/Contact">Contact</Link>
         </li>
         <li className="text-black font-bold max-[900px]:hidden">
-          <Link to="/Setting" className="flex flex-col items-center justify-center">
+          <Link to="/profile" className="flex flex-col items-center justify-center">
             <img src="/images/Profile.svg" alt="Profile" className="w-16" />
             Name
           </Link>

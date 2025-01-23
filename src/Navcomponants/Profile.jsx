@@ -1,101 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import "../style/profile.css";
 
 const Profile = () => {
-  const [isSignUp, setIsSignUp] = useState(false); // Toggle between sign-in and sign-up
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [isSignUp, setIsSignUp] = useState(false); 
+  const [user, setUser] = useState(null); 
+  const [formData, setFormData] = useState({ name: '', phone: '', password: '' });
   const [error, setError] = useState('');
 
-  const navigate = useNavigate(); // For navigation
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); 
+    }
+  }, []);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/sign-up', {
-        name,
-        phone,
-        password,
-      });
-      alert(response.data); // Display success message
-      setIsSignUp(false); // Switch to sign-in after successful sign-up
+      const { name, phone, password } = formData;
+      const response = await axios.post('http://localhost:4000/api/sign-up', { name, phone, password });
+      alert(response.data);
+      setIsSignUp(false);
     } catch (err) {
-      setError('Error during sign-up: ' + (err.response?.data || err.message));
+      setError(err.response?.data || 'Error during sign-up');
     }
   };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/sign-in', {
-        phone,
-        password,
-      });
+      const { phone, password } = formData;
+      const response = await axios.post('http://localhost:4000/api/sign-in', { phone, password });
 
       const { token, message } = response.data;
-      alert(message); // Display success message
+      alert(message);
 
-      // Save the token to localStorage for future use
       localStorage.setItem('token', token);
 
-      navigate('/home'); // Redirect to home after successful sign-in
+      const userResponse = await axios.get('http://localhost:4000/api/user-details', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setUser(userResponse.data);
+      localStorage.setItem('user', JSON.stringify(userResponse.data));
+      navigate('/');
     } catch (err) {
-      setError('Error during sign-in: ' + (err.response?.data || err.message));
+      setError(err.response?.data || 'Error during sign-in');
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/');
   };
 
   return (
     <div className="profile-container">
-      <h2>{isSignUp ? 'Sign-Up' : 'Sign-In'}</h2>
-      
-      <form onSubmit={isSignUp ? handleSignUp : handleSignIn}>
-        {isSignUp && (
-          <div>
-            <label>Name:</label>
-            <input 
-              type="text" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-              required 
-            />
-          </div>
-        )}
-        
+      {user ? (
         <div>
-          <label>Phone:</label>
-          <input 
-            type="text" 
-            value={phone} 
-            onChange={(e) => setPhone(e.target.value)} 
-            required 
-          />
+          <h2>Welcome, {user.Name}!</h2>
+          <p><strong>Phone:</strong> {user.Phone}</p>
+          <button onClick={handleLogout}>Logout</button>
         </div>
+      ) : (
+        <>
+          <h2>{isSignUp ? 'Sign-Up' : 'Sign-In'}</h2>
 
-        <div>
-          <label>Password:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
-          />
-        </div>
+          <form onSubmit={isSignUp ? handleSignUp : handleSignIn}>
+            {isSignUp && (
+              <div>
+                <label>Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            )}
 
-        <button type="submit">
-          {isSignUp ? 'Sign Up' : 'Sign In'}
-        </button>
-      </form>
+            <div>
+              <label>Phone:</label>
+              <input
+                type="text"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
 
-      {error && <p className="error">{error}</p>}
+            <div>
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
 
-      <div>
-        <button onClick={() => setIsSignUp(!isSignUp)}>
-          {isSignUp ? 'Already have an account? Sign In' : 'Create a new account? Sign Up'}
-        </button>
-      </div>
+            <button type="submit">{isSignUp ? 'Sign Up' : 'Sign In'}</button>
+          </form>
+
+          {error && <p className="error">{error}</p>}
+
+          <button onClick={() => setIsSignUp(!isSignUp)}>
+            {isSignUp ? 'Already have an account? Sign In' : 'Create a new account? Sign Up'}
+          </button>
+        </>
+      )}
     </div>
   );
 };
