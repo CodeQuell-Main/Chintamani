@@ -15,7 +15,7 @@ import Footer from './Navcomponants/Footer';
 const App = () => {
 
   const location = useLocation(); 
-  const hideNavAndFooterRoutes = ['/', '/login']; 
+  const hideNavAndFooterRoutes = ['/', '/profile']; 
 
   return (
     

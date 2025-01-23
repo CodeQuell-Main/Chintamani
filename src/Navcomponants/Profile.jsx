@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/profile.css";
 import {
   auth,
@@ -118,27 +118,40 @@ const Profile = () => {
     }
   };
 
+  
+
   return (
-    <div className="profile-container">
+    <section className="Login">
+
+
+    <div className="grid md:grid-cols-2 grid-cols-1 items-center">
+
+        <div className="left md:flex justify-center items-center col-span-1">
+            <img src="/images/Logo.svg" alt="Logo" className="md:w-96 w-24 md:mt-0 mt-4" />
+        </div>
+
+      <div className="md:bg-[#faf7f0] md:col-start-2 md:mt-0 mt-14 h-screen flex flex-col justify-center items-center">
       {user ? (
-        <div>
-          <h2>Welcome, {user?.Name || "User"}!</h2>
-          <button onClick={handleLogout}>Logout</button>
+        <div className="flex flex-col justify-center items-center gap-7">
+          <h2 className="text-2xl">Welcome, <span className="font-bold">{user?.Name || "User"}</span>!</h2>
+          <Link to="/products"><button type="button" className='bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white max-[900px]:hidden'>Explore</button></Link>
+          <button className="font-bold text-xl bg-red-400 px-10 py-2 rounded-2xl hover:bg-red-600" onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <>
-          <h2>{isSignUp ? "Sign-Up" : "Sign-In"}</h2>
+          <h2 className="text-3xl font-bold md:font-semibold">{isSignUp ? "Sign-Up" : "Sign-In"}</h2>
 
-          <form onSubmit={isSignUp ? handleSignUp : handleSignIn}>
+          <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="mt-8 md:mt-6 ">
             {isSignUp && (
-              <div>
-                <label>Name:</label>
+              <div className="phone-no">
+                <label className="md:text-[#676666] text-white font-semibold text-xl ">Name:</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
+                  className="md:w-[25vw] w-full rounded-2xl px-6 py-2 mt-1 border-2 border-[#676666cd]"
                 />
               </div>
             )}
@@ -165,21 +178,32 @@ const Profile = () => {
               />
             </div>
 
-            <button type="submit">{isSignUp ? "Sign Up" : "Sign In"}</button>
+            <button type="submit" className="text-center w-full bg-[#475AFF] text-white font-bold text-2xl mt-10 py-2 rounded-full">{isSignUp ? "Sign Up" : "Sign In"}</button>
           </form>
 
           {error && <p className="error">{error}</p>}
 
-          <button onClick={() => setIsSignUp(!isSignUp)}>
+          <button onClick={() => setIsSignUp(!isSignUp)} className="mt-6 font-bold text-xl">
             {isSignUp
               ? "Already have an account? Sign In"
               : "Create a new account? Sign Up"}
           </button>
 
-          <button onClick={handleGoogleSignIn}>Continue with Google</button>
+          <button onClick={handleGoogleSignIn} className="flex mt-6 items-center font-bold text-xl">Continue with Google <img src="/images/google.svg" alt="" className="" /></button>
         </>
       )}
+      </div>
+
+    
+
+
     </div>
+
+    
+
+
+
+    </section>
   );
 };
 

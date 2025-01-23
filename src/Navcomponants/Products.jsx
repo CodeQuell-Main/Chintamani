@@ -31,9 +31,9 @@ const Products = () => {
     return (
         <div className="products-container h-[78vh]  bg-[#faf7f0]">
              <p className="text-center text-[#4A4947] font-bold text-[40px] pt-14 page"> आमची दर्जेदार उत्पादने </p>
-            <div className="cards flex justify-evenly items-center mt-4 ">
+            <div className="cards flex justify-evenly items-center mt-4 mb-4">
                 {["masale", "flour", "syrup", "konkan"].map((category) => (
-                    <div className="card" key={category}>
+                    <div className="card flex flex-col pt-4" key={category}>
                         <img
                             src={`images/${category}.png`} // Ensure you have the correct path to your images
                             alt={category}

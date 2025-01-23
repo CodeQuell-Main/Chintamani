@@ -68,7 +68,7 @@ body{
 }
 
 .Login .left{
-  background-image: url('../src/Images/login.png');
+  background-image: url('../public/images/login.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;
@@ -98,7 +98,7 @@ input[type="radio"] {
 
 @media (max-width:769px){
  .Login .left{
-    background-image: url('../src/Images/login.png');
+    background-image: url('../public/images/login.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;

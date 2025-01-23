@@ -50,7 +50,7 @@ const ProductList = () => {
 
     return (
         <div className="product-list-container bg-[#faf7f0]">
-            <h1  className="font-bold text-2xl marathi ">Products in {category}</h1>
+            <h1  className="font-bold text-2xl marathi text-center">Products in {category}</h1>
             <div className="product-list grid grid-cols-4 items-center gap-y-14 mt-8 pb-4 ">
                 {products.map((product) => (
                     <div className="product-card flex flex-col justify-center items-center " key={product.productId}>

@@ -165,7 +165,7 @@ const ProductDetails = () => {
               <div className="col-span-5 text-left">{product.productDetail}</div>
             </div>
             
-            <div className="mt-10  ">
+            <div className="mt-10  flex flex-col justify-center items-center gap-4">
                 <h3 className='font-bold text-2xl font-serif'>Reviews</h3>
                 {reviews.length > 0 ? (
                     <ul>
@@ -181,9 +181,10 @@ const ProductDetails = () => {
                 <form onSubmit={handleReviewSubmit} className='mt-4'>
                     <textarea
                         value={newReview}
+                        cols="20"
                         onChange={(e) => setNewReview(e.target.value)}
                         placeholder="Write your review here..."
-                        className='mx-96 px-6 py-2 rounded-2xl bg-[#faf7f0] border-2 border-black'
+                        className=' px-6 py-2 rounded-2xl bg-[#faf7f0] border-2 border-black w-96'
                     />
                     <div className="flex justify-center items-center pb-4">
                     <button type="submit" className='text-xl font-bold bg-sky-400 flex justify-center items-center px-10 hover:bg-sky-700 py-1 rounded-xl text-white '>Submit Review</button>
