@@ -95,6 +95,11 @@ input[type="radio"] {
   transform: scale(1.5);
 } 
 
+.product-details{
+  font-family: "Inknut Antiqua", serif;
+
+}
+
 
 @media (max-width:769px){
  .Login .left{
