@@ -44,7 +44,7 @@
 }
 
 .Home{
-  background-image: url('../src/Images/Landing_page.png');
+  background-image: url('/Images/Landing_page.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;
@@ -68,7 +68,7 @@ body{
 }
 
 .Login .left{
-  background-image: url('../public/images/login.png');
+  background-image: url('/images/login.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;
