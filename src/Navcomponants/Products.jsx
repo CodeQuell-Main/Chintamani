@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loder from "../componants/Loder";
 // import "../style/products.css";
 import axios from "axios";
 
@@ -27,6 +28,9 @@ const Products = () => {
             setLoading(false);
         }
     };
+
+    if (loading) return <Loder/>;
+    if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
         <div className="products-container h-[78vh]  bg-[#faf7f0]">

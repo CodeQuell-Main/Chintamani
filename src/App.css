@@ -201,3 +201,41 @@ input[type="radio"] {
     color: black;
   }
 }
+
+.loder div{
+  animation: a 1.5s infinite backwards   ;
+}
+
+@keyframes a {
+  0% {
+      transform: rotate(0deg) translateY(-200%);
+  }
+  60%, 100% {
+      transform: rotate(360deg) translateY(-200%) scale(1.5);
+      gap: 30px;
+     
+  }
+}
+
+.loder div:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.loder div:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loder div:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+.loder div:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.loder div:nth-child(5) {
+  animation-delay: 0.75s;
+}
+.loder div:nth-child(6) {
+  animation-delay: 0.90s;
+}

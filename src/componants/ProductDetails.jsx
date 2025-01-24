@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import Loder from './Loder';
 // import "../style/productdetail.css";
 
 const ProductDetails = () => {
@@ -90,7 +91,7 @@ const ProductDetails = () => {
     };
     
 
-    if (loading) return <h1>Loading...</h1>;
+    if (loading) return <Loder/>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
