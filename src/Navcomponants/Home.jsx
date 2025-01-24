@@ -15,7 +15,6 @@ const Home = () => {
     <section className="Home" id='Home'>
         {/* <nav className="">
           <ul className="flex justify-around items-center mt-2">
-            <li id='our_products' className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="" className="">Our Products</Link></li>
           <li className="flex items-center justify-center max-[900px]:hidden "><input type="text" placeholder='Search' className=' bg-white py-2 px-5 rounded-l-full w-[300px] focus:outline-none' /> <i className="fa-solid fa-magnifying-glass bg-white p-3 rounded-r-full"></i> </li>
           <li className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="/Home" className="">Home</Link></li>
           <li id='our_products' className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="" className="">Our Products</Link></li>
