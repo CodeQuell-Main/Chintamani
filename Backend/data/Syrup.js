@@ -4,8 +4,7 @@ const Syrup = [
         productImage: 'https://i.postimg.cc/GpCThYHL/syrup-Products-1.png',
         productName: 'कोकम सरबत',
         productPrice: '140',
-        productDetail: `   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo provident officia placeat, animi asperiores maxime accusamus. Nulla magni animi praesentium atque sed ab voluptas excepturi porro, dolorem maiores amet reprehenderit quos, ipsum laudantium eligendi nemo laboriosam quas cumque officiis quaerat quo quidem quia iure. Aliquam nam temporibus aut consequuntur doloremque!
-`,
+        productDetail: `कोकम सरबत कोकम हे कोकणातील अत्यंत उपयोगी फळ आहे की ज्यात पाचक गुणधर्म आहेत. त्यापासून बनवले जाणारे सरबत हे उन्हाळ्यात आवडीने केले जाते कोणत्याही कृत्रिम कलर शिवाय तयार केलेले हे आमचे उत्पादन आपणासाठी एक लिटर व अर्धा लिटर मध्ये आणले आहे. साखर मिश्रित हेच सरबत लहान मुलांपासून मोठ्यांपर्यंत आवडीने सेवन केले जाते या सर्व त्याचे पाण्याबरोबर एकास चार वाटी असे प्रमाण आहे.`,
         Category: 'syrup'
     },
 
@@ -14,8 +13,7 @@ const Syrup = [
         productImage: 'https://i.postimg.cc/L8fZpv4Q/syrup-Products-2.png',
         productName: 'कोकम आगळ',
         productPrice: '120',
-        productDetail: `   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo provident officia placeat, animi asperiores maxime accusamus. Nulla magni animi praesentium atque sed ab voluptas excepturi porro, dolorem maiores amet reprehenderit quos, ipsum laudantium eligendi nemo laboriosam quas cumque officiis quaerat quo quidem quia iure. Aliquam nam temporibus aut consequuntur doloremque!
-`,
+        productDetail: `कोकम आगळ या कोकम रसात केवळ नीट वापरले जाते. विशेषतः सोलकढीसाठी सर्वत्र याचा वापर केला जातो.`,
         Category: 'syrup'
     },
 
@@ -24,8 +22,7 @@ const Syrup = [
         productImage: 'https://i.postimg.cc/Y2nFfhyR/syrup-Products-3.png',
         productName: 'आवळा सरबत',
         productPrice: '120',
-        productDetail: `   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo provident officia placeat, animi asperiores maxime accusamus. Nulla magni animi praesentium atque sed ab voluptas excepturi porro, dolorem maiores amet reprehenderit quos, ipsum laudantium eligendi nemo laboriosam quas cumque officiis quaerat quo quidem quia iure. Aliquam nam temporibus aut consequuntur doloremque!
-`,
+        productDetail: `आवळा सरबत साखरयुक्त आवळ्याचा रस जो पित्तशामक व पाचक औषधा गुणांमुळे आरोग्यास अतिशय उत्तम असा आहे. मुख्यत्वे करून उन्हाळ्याच्या दिवसात याचा आरोग्यावर चांगला परिणाम होतो आम्ही बनवलेल्या सरबते ही कोकणातच नाही तर इतर भागातही पसंत ठरलं आहे.`,
         Category: 'syrup'
     },
 
@@ -34,8 +31,7 @@ const Syrup = [
         productImage: 'https://i.postimg.cc/SNHz3H4z/syrup-Products-4.png',
         productName: 'आमरस',
         productPrice: '170',
-        productDetail: `   Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo provident officia placeat, animi asperiores maxime accusamus. Nulla magni animi praesentium atque sed ab voluptas excepturi porro, dolorem maiores amet reprehenderit quos, ipsum laudantium eligendi nemo laboriosam quas cumque officiis quaerat quo quidem quia iure. Aliquam nam temporibus aut consequuntur doloremque!
-`,
+        productDetail: ` आमरस पूर्णतः नॅचरल कोकणातील हापूस आंब्यापासून बनवलेला आमरस यात कोणत्याही प्रकारचे कृत्रिम कलर अगर तो जास्त दिवस टिकावा यासाठी प्रिझर्वेटिव्ह नसलेला असा आमरस आरोग्यास कोणत्याही प्रकारचा अपाय करणारा नाही. केक बनवताना अशा अनेक खाद्यपदार्थ मध्ये वापरू शकता हा तुम्हाला एक लिटर अर्धा लिटर व 850 ml च्या टीम कॅन मध्ये उपलब्ध आहे.`,
         Category: 'syrup'
     },
 
