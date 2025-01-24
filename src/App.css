@@ -43,25 +43,42 @@
   box-sizing: border-box;
 }
 
-.Home{
-  background-image: url('/Images/Landing_page.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size:cover;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  z-index: -1;
-  opacity: 1;
-  width: 100vw;
-  height: 100vh;
-
-}
 
 body{
   
   font-family: Josefin Slab;
+  
+
 }
+.Home {
+  background-image: url('/Landing_page.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0; /* Start with hidden state */
+  animation: fadeIn 4s ease-in-out forwards; /* Updated animation */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* Fully transparent */
+  }
+
+  90%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1; /* Fully visible */
+  }
+}
+
+
 
 .mid-home, .page, .marathi{
   font-family: "Inknut Antiqua", serif;
@@ -85,6 +102,65 @@ body{
   display: block;
 }
 
+.Home-Logo{
+  animation: Logo 2s linear 2  ;
+}
+
+@keyframes Logo {
+
+  0% {
+    opacity: 0; /* Fully visible */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: scale(1);
+    
+  }
+  25% {
+    opacity: 1; /* Fully hidden */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: scale(2);
+    
+  }
+
+  50%{
+    opacity: 0%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: scale(1);
+    
+  }
+
+  75%{
+    opacity: 1%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: scale(2);
+    
+  }
+
+  100%{
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: scale(1);
+    
+   
+  }
+
+  
+
+}
 
 
 input[type="radio"] {
