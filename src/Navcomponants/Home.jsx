@@ -35,7 +35,7 @@ const Home = () => {
 
         <div className="explore-btn mt-20 md:mt-14 2xl:mt-28 md:mx-20 mx-10 flex justify-start items-start">
           <button type="button" className='bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white max-[900px]:hidden' onClick={handleExploreClick}>Explore</button>
-          <button type="button" className='bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white min-[900px]:hidden'>Get Start</button>
+          <button type="button" className='bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white min-[900px]:hidden' onClick={handleExploreClick}>Get Start</button>
 
         </div>
 

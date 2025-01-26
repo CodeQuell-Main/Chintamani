@@ -162,8 +162,8 @@ const ProductDetails = () => {
            
             
           <div className="grid grid-cols-6 mx-44 font-semibold mt-8 ">
-              <div className="text-xl">Product Description : </div>
-              <div className="col-span-5 text-left product-details">{product.productDetail}</div>
+              <div className="text-xl font-extrabold">Product Description : </div>
+              <div className="col-span-5 font-medium text-left text-sm product-details leading-6">{product.productDetail}</div>
             </div>
             
             <div className="mt-10  flex flex-col justify-center items-center gap-4">

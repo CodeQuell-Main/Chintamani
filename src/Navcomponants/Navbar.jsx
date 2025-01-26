@@ -4,10 +4,10 @@ import "../style/navbar.css"
 
 const Navbar = () => {
   return (
-    <div className="bg-[#faf7f0]">
+    <div className="bg-[#faf7f0] max-[800px]:bg-[#D8D2C2]">
     <nav>
-      <ul className="flex justify-around items-center">
-        <img src="/images/Logo.svg" alt="Logo" className="md:w-20 w-44 max-[900px]:mt-10" />
+      <ul className="flex md:justify-around justify-between items-center">
+        <img src="/images/Logo.svg" alt="Logo" className="md:w-20 w-20 " />
         
         <li className="text-black font-bold text-xl max-[900px]:hidden">
           <Link to="/">Home</Link>
@@ -22,7 +22,7 @@ const Navbar = () => {
         <li className="text-black font-bold text-xl max-[900px]:hidden">
           <Link to="/Contact">Contact</Link>
         </li>
-        <li className="text-black font-bold max-[900px]:hidden">
+        <li className="text-black font-bold ">
           <Link to="/profile" className="flex flex-col items-center justify-center">
             <img src="/images/Profile.svg" alt="Profile" className="w-16" />
           </Link>

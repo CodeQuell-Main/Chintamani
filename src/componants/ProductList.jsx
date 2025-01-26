@@ -52,22 +52,19 @@ const ProductList = () => {
     return (
         <div className="product-list-container bg-[#faf7f0]">
             <h1  className="font-bold text-2xl marathi text-center">Products in {category}</h1>
-            <div className="product-list grid grid-cols-4 items-center gap-y-14 mt-8 pb-4 ">
+            <div className="product-list grid grid-cols-4 max-[950px]:grid-cols-2 items-center gap-y-14 mt-8 pb-4  ">
                 {products.map((product) => (
-                    <div className="product-card flex flex-col justify-center items-center " key={product.productId}>
-                        <img
+                    <div className="product-card flex flex-col justify-center items-start  justify-self-center" key={product.productId}>
+                       <Link to={`/products/details/${product.productId}`}>
+                       <img
                             src={product.productImage}
                             alt={product.productName}
-                            className="w-60 border-black border-2 rounded-2xl p-2 shadow-lg"
+                            className="md:w-60 w-40 border-black border-2 rounded-2xl p-2 shadow-lg"
                         />
-                        <h3 className="marathi mt-2">{product.productName}</h3>
-                        <div className=" mt-0">
-                            <Link
-                                to={`/products/details/${product.productId}`}
-                                className="view-details"
-                            >
-                                View Details
-                            </Link>
+                       </Link>
+                        <h3 className="marathi mt-2 max-[500px]:text-sm px-4">{product.productName}</h3>
+                        <div className=" mt-0 px-4">
+                           <p className="text-left font-extrabold text-xl ">{product.productPrice}</p>
                         </div>
                     </div>
 
