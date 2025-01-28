@@ -113,17 +113,17 @@ const AddToCart = () => {
                           <img
                             src={item.productImage}
                             alt={item.productName}
-                            className="cart-item-image w-20"
+                            className="cart-item-image w-36 justify-self-center"
                           />
-                          <p className="text-lg font-bold">{item.productName}</p>
+                          <p className="text-lg font-bold justify-self-center">{item.productName}</p>
                         </div>
                       </div>
 
-                      <div className="cart-item-info">
+                      <div className="cart-item-info justify-self-center">
                         <p className="price text-lg font-bold">{item.productPrice}</p>
                       </div>
 
-                      <div className="">
+                      <div className=" justify-self-center">
                         <input
                           type="number"
                           id="quantity"
@@ -139,12 +139,12 @@ const AddToCart = () => {
                           }
                           min="1"
                           max= "5"
-                          className="w-14 text-center py-1 bg-[#B17457] text-white rounded-2xl"
+                          className="w-14 text-center py-1 bg-[#B17457] text-white rounded-2xl justify-self-center"
                         />
                       </div>
 
-                      <div className="">
-                        <p className="text-lg font-bold">
+                      <div className="justify-self-center">
+                        <p className="text-lg font-bold ">
                           ₹{(item.productPrice * (item.quantity || 1)).toFixed(2)}
                         </p>
                       </div>

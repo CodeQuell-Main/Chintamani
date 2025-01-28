@@ -23,3 +23,17 @@
   border: 2px solid #676666cd;
   border-radius: 20px;
 }
+
+@media (max-width:800px) {
+  .Login input{
+   
+    width: 100%;
+    
+  }
+
+  .Login label{
+    /* md:text-[#676666] text-white font-semibold text-xl */
+    color: #ffffff;
+    
+  }
+}

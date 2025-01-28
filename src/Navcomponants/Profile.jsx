@@ -211,6 +211,7 @@ const Profile = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
+                    className="w-full"
                   />
                 </div>
 
@@ -222,6 +223,7 @@ const Profile = () => {
                     value={formData.password}
                     onChange={handleInputChange}
                     required
+                    className="w-full"
                   />
                 </div>
 

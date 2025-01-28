@@ -62,9 +62,9 @@ const ProductList = () => {
                             className="md:w-60 w-40 border-black border-2 rounded-2xl p-2 shadow-lg"
                         />
                        </Link>
-                        <h3 className="marathi mt-2 max-[500px]:text-sm px-4">{product.productName}</h3>
+                        <h3 className="marathi mt-2 max-[500px]:text-[12px] px-4">{product.productName}</h3>
                         <div className=" mt-0 px-4">
-                           <p className="text-left font-extrabold text-xl ">{product.productPrice}</p>
+                           <p className="text-left font-extrabold text-xl max-[500px]:text-[14px] ">{product.productPrice}</p>
                         </div>
                     </div>
 

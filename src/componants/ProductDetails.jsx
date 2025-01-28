@@ -98,7 +98,7 @@ const ProductDetails = () => {
         <div className="product-details-container bg-[#faf7f0]">
           <div className="">
 
-            <div className="flex justify-evenly items-center">
+            <div className="flex max-[750px]:flex-col max-[750px]:justify-center  justify-evenly items-center">
 
               <div className="product-gallery ">
                 <img src={product.productImage} alt={product.productName} />
@@ -111,7 +111,7 @@ const ProductDetails = () => {
                 )}
              </div>
 
-             <div className="head flex justify-start items-center gap-16">
+             <div className="head flex md:justify-start justify-center   items-center gap-16">
                   <div>
                     <p className="name marathi text-2xl text-left">{product.productName}</p>
                    
@@ -146,7 +146,7 @@ const ProductDetails = () => {
                       </div>
                    </div>
 
-                   <div className="grid grid-cols-3 gap-6 mt-6">
+                   <div className="grid md:grid-cols-3 grid-cols-2 gap-6 mt-6">
                         <div className="">
                           <button type="button" className='bg-[#B17457] w-full text-center font-semibold py-2 px-6 text-white rounded-lg' onClick={addToCart}>Buy Now</button>
                         </div>
@@ -161,8 +161,8 @@ const ProductDetails = () => {
           </div>
            
             
-          <div className="grid grid-cols-6 mx-44 font-semibold mt-8 ">
-              <div className="text-xl font-extrabold">Product Description : </div>
+          <div className="grid grid-cols-6 max-[800px]:grid-cols-1 max-[800px]:gap-4 mx-44 max-[1000px]:mx-12 max-[500px]:mx-6 font-semibold mt-8 ">
+              <div className="text-xl max-[800px]:text-[24px] font-extrabold">Product Description : </div>
               <div className="col-span-5 font-medium text-left text-sm product-details leading-6">{product.productDetail}</div>
             </div>
             
