@@ -19,7 +19,7 @@ const AdminPage = () => {
       }, []);
 
   return (
-    <div className="flex justify-center items-start bg-[#faf7f0] px-20 h-[78vh]">
+    <div className="flex justify-center items-start bg-[#faf7f0] px-20 overflow-auto ">
       <table className="mt-6">
         <thead>
           <tr>

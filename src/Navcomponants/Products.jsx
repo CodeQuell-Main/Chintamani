@@ -33,7 +33,7 @@ const Products = () => {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
-        <div className="products-container  md:h-[78vh]  bg-[#faf7f0]">
+        <div className="products-container  md:h-[78vh]  bg-[#faf7f0] max-[800px]:pb-16">
              <p className="text-center text-[#4A4947] font-bold text-[40px] pt-14 page"> आमची दर्जेदार उत्पादने </p>
             <div className="cards grid md:grid-cols-4 grid-cols-2 md:gap-0 gap-10 md:mx-0 mx-10 mt-4 mb-4">
                 {["masale", "flour", "syrup", "konkan"].map((category) => (

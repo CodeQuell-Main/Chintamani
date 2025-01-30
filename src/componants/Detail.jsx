@@ -147,18 +147,18 @@ const Detail = () => {
     }
 
   return (
-    <div className="bg-[#faf7f0] px-20 h-[78vh] text-[#4A4947]">
+    <div className="bg-[#faf7f0] lg:px-20 md:px-10 px-3  md:h-[78vh] text-[#4A4947]">
 
             <div className="">
                 <p className="font-bold sha text-4xl pt-10 pb-2 text-[#4A4947]">Shipping Address : </p>
             </div>
 
-            <div className="grid grid-cols-6">
-                <div className="col-span-4">
+            <div className="grid grid-cols-6 max-[1400px]:grid-cols-12 max-[800px]:grid-cols-1 max-[800px]:pb-16  items-center">
+                <div className="col-span-4 max-[1400px]:col-span-7 max-[1100px]:col-span-6">
                     <div className="border-2 border-[#b17457] rounded-xl mt-6 px-10 py-4">
 
                         <form action="">
-                            <div className="grid grid-cols-2 gap-8 mt-4">
+                            <div className="grid grid-cols-2 gap-8 ">
                                 <div className="flex flex-col justify-center items-start col-span-2 ">
                                     <label htmlFor="" className=''>Full Name</label>
                                     <input type="text" name="fullName" id="" value={formData.fullName} onChange={handleInputChange} className="border-2 bg-[#faf7f0] outline-none px-6 py-1 border-[#b1745780] rounded-xl w-full" />
@@ -174,12 +174,12 @@ const Detail = () => {
                                     <input type="number" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} id="" className="border-2 bg-[#faf7f0] outline-none px-6 py-1 border-[#b1745780] rounded-xl w-full" />
                                 </div>
 
-                                <div className="flex flex-col justify-center items-start">
+                                <div className="flex flex-col max-[1000px]:col-span-2 justify-center items-start">
                                     <label htmlFor="" className=''>Email ID</label>
                                     <input type="email" name="email" value={formData.email} onChange={handleInputChange} id="" className="border-2 bg-[#faf7f0] outline-none px-6 py-1 border-[#b1745780] rounded-xl w-full" />
                                 </div>
 
-                                <div className="grid grid-cols-4 col-span-2 gap-5">
+                                <div className="grid max-[1000px]:grid-cols-2 grid-cols-4 col-span-2  gap-5">
                                     <div className="flex flex-col justify-center items-start">
                                         <label htmlFor="" className=''>State</label>
                                         <input type="text" name="state" id="" value={formData.state} onChange={handleInputChange} className="border-2 bg-[#faf7f0] outline-none px-6 py-1 border-[#b1745780] rounded-xl w-full" />
@@ -191,30 +191,27 @@ const Detail = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex justify-start items-center gap-10">
-                                <button type="button" className='border-2 border-[#b17457] px-10 py-2 font-bold rounded-full mt-6' >Cancel</button>
-                                <button type="button" className='border-2 border-[#b17457] bg-[#26ff0080]  px-10 py-2 font-bold rounded-full mt-6' >Use This Address</button>
-                            </div>
+                            
                         </form>
 
                     </div>
                 </div>
 
 
-                <div className="col-span-2 px-6 py-4 ">
-                    <div className="border-2 border-[#B17457]  px-6 py-2 rounded-2xl">
+                <div className="col-span-2 max-[1400px]:col-span-5 max-[1100px]:col-span-6 md:px-6 py-4   ">
+                    <div className="border-2 border-[#B17457]  md:px-6 py-2 px-2 rounded-2xl">
                         <h1 className='font-semibold text-2xl'>Order Detail</h1>
                         {cartItems.length > 0 ? (
-                            <div className="grid gap-4 mt-6 overflow-y-auto h-44" >
+                            <div className="grid gap-4 mt-6 overflow-y-auto md:h-44" >
                                 {cartItems.map((item) => (
-                                    <div className="flex justify-evenly items-center" key={item.productId}>
+                                    <div className="grid grid-cols-5 max-[1400px]:gap-4 items-center" key={item.productId}>
                                         <img
                                             src={item.productImage}
                                             alt={item.productName}
                                             className="w-16" />
-                                        <div className="">
-                                            <p className="marathi">{item.productName}</p>
-                                            <p className="">{item.productPrice}</p>
+                                        <div className="col-span-2">
+                                            <p className="marathi max-[1500px]:text-sm">{item.productName}</p>
+                                            <p className=" max-[1500px]:text-sm">{item.productPrice}</p>
                                         </div>
                                         <div className="">
                                             <input
@@ -248,10 +245,10 @@ const Detail = () => {
                         )}
 
                         <div className="grid grid-cols-4 gap-2 mt-8 pb-4">
-                            ₹{totalPrice.toFixed(2)}
-                            <span className='col-start-2 text-lg font-semibold justify-self-center'>Subtotal -</span> <span className='text-[#B17457] text-lg font-bold justify-self-center'>₹{totalPrice.toFixed(2)}</span>
-                            <span className='col-start-2 text-lg font-semibold justify-self-center'>Shipping -</span> <span className='text-[#B17457] text-lg font-bold justify-self-center'>Depend on the place</span>
-                            <span className='col-start-2 text-xl font-bold justify-self-center '>Total -</span> <span className='text-[#B17457] text-xl font-bold  justify-self-center'>₹{(parseFloat(totalPrice.toFixed(2)))}</span>
+                            
+                            <span className='min-[1500px]:col-start-2 max-[1500px]: text-lg font-semibold justify-self-center'>Subtotal -</span> <span className='text-[#B17457] text-lg font-bold  col-span-2'>₹{totalPrice.toFixed(2)}</span>
+                            <span className='min-[1500px]:col-start-2 max-[1500px]:row-start-2 text-lg font-semibold justify-self-center'>Shipping -</span> <span className='text-[#B17457] text-lg font-bold max-[1400px]:col-span-3  col-span-2'>Depend on the place</span>
+                            <span className='min-[1500px]:col-start-2 max-[1500px]:row-start-3 text-xl font-bold justify-self-center '>Total -</span> <span className='text-[#B17457] text-xl font-bold   col-span-2'>₹{(parseFloat(totalPrice.toFixed(2)))}</span>
                         </div>
 
                         <div className="flex justify-center items-center">

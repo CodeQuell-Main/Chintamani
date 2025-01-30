@@ -50,7 +50,7 @@ const ProductList = () => {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
-        <div className="product-list-container bg-[#faf7f0]">
+        <div className="product-list-container bg-[#faf7f0] max-[800px]:pb-16">
             <h1  className="font-bold text-2xl marathi text-center">Products in {category}</h1>
             <div className="product-list grid grid-cols-4 max-[950px]:grid-cols-2 items-center gap-y-14 mt-8 pb-4  ">
                 {products.map((product) => (

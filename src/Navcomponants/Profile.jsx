@@ -181,7 +181,7 @@ const Profile = () => {
               <Link to="/products">
                 <button
                   type="button"
-                  className="bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white max-[900px]:hidden"
+                  className="bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white "
                 >
                   Explore
                 </button>
@@ -273,6 +273,8 @@ const Profile = () => {
         </div>
       </div>
     </section>
+
+    
   );
 };
 

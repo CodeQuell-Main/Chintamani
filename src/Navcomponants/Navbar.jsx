@@ -22,6 +22,11 @@ const Navbar = () => {
         <li className="text-black font-bold text-xl max-[900px]:hidden">
           <Link to="/Contact">Contact</Link>
         </li>
+        
+        <li className="text-black font-bold text-xl max-[900px]:hidden">
+          <Link to="/addtocart"><img src="/images/cart.png" alt="" className="w-12" /></Link>
+        </li>
+
         <li className="text-black font-bold ">
           <Link to="/profile" className="flex flex-col items-center justify-center">
             <img src="/images/Profile.svg" alt="Profile" className="w-16" />

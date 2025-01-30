@@ -95,7 +95,7 @@ const ProductDetails = () => {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
-        <div className="product-details-container bg-[#faf7f0]">
+        <div className="product-details-container bg-[#faf7f0] max-[800px]:pb-16">
           <div className="">
 
             <div className="flex max-[750px]:flex-col max-[750px]:justify-center  justify-evenly items-center">

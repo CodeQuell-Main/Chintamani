@@ -14,15 +14,6 @@ const Home = () => {
     
     <div className="">
         <section className="Home" id='Home'>
-        {/* <nav className="">
-          <ul className="flex justify-around items-center mt-2">
-          <li className="flex items-center justify-center max-[900px]:hidden "><input type="text" placeholder='Search' className=' bg-white py-2 px-5 rounded-l-full w-[300px] focus:outline-none' /> <i className="fa-solid fa-magnifying-glass bg-white p-3 rounded-r-full"></i> </li>
-          <li className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="/Home" className="">Home</Link></li>
-          <li id='our_products' className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="" className="">Our Products</Link></li>
-          <li className="text-white font-semibold text-2xl max-[900px]:hidden "><Link to="" className="">Contact</Link></li>
-          <li className="text-white font-semibold  text-2xl max-[900px]:hidden "><Link to='/profile'><button className='bg-[#475AFF] hover:bg-[#3948ce] text-white text-xl py-2 px-10 rounded-2xl' type='button'>Log In</button></Link></li>
-          </ul>
-          </nav> */}
        
 
         <div className="flex flex-col justify-center items-start  text-white mt-60 mx-6 md:mt-20 2xl:mt-52 md:mx-20 mid-home ">
@@ -39,12 +30,10 @@ const Home = () => {
 
         </div>
 
-        <div className="absolute bottom-6 right-8 max-[500px]:hidden">
-          {/* <Link to="/login"><button type='button' className='bg-white  rounded-full'><img src="/" alt="" className="w-14 h-14" /></button></Link> */}
-        </div>
+      
     </section>
 
-      <div className="Home-Logo max-[500px]:flex justify-center items-center">
+      <div className="Home-Logo max-[500px]:flex justify-center items-center absolute top-2 left-2">
           <img src="/images/Logo.svg" alt="" className="md:w-24 w-44 max-[900px]:mt-10" />
         </div>
     </div>

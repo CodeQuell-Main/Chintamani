@@ -7,22 +7,11 @@ export default function Footer() {
 
       
       {/* Desktop Footer */}
-      <div className="w-full bg-[#D8D2C2] hidden md:block">
-        <div className="mx-10 flex justify-between items-center py-2">
-          <Link to="/Setting">
-            <img src="/images/Settings.svg" alt="Settings" />
-          </Link>
-          <Link to="/addtocart">
-            <button type="button" className="bg-white rounded-full" aria-label="Open Cart">
-              <img src="/images/Shopping_bag.svg" alt="Cart" className="w-14 h-14" />
-            </button>
-          </Link>
-        </div>
-      </div>
+      
 
       {/* Mobile Footer */}
       <div className="block md:hidden">
-        <div className="sticky bottom-0 w-full bg-[#D8D2C2] py-2">
+        <div className="fixed bottom-[0%] w-full bg-[#D8D2C2] py-2">
           <nav>
             <ul className="flex justify-around items-center">
               <li>
@@ -43,6 +32,14 @@ export default function Footer() {
                   <span>Products</span>
                 </Link>
               </li>
+
+              <li>
+                <Link to="/contact" className='flex flex-col justify-center items-center font-bold'>
+                <i className="fa-solid fa-phone text-xl"></i>
+                  <span>Contact</span>
+                </Link>
+              </li>
+
             </ul>
           </nav>
         </div>

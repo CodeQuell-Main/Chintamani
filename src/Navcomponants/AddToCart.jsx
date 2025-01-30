@@ -65,31 +65,31 @@ const AddToCart = () => {
 
 
   return (
-    <div className="bg-[#faf7f0] px-20 h-[78vh] text-[#4A4947]">
+    <div className="bg-[#faf7f0] px-4 lg:px-20 lg:h-[78vh] text-[#4A4947] max-[800px]:pb-16" >
       <div className="">
         <p className="font-bold sha text-4xl pt-10 pb-2 text-[#4A4947]">
           Total Cart Items: {cartItems.length}
         </p>
       </div>
 
-      <div className="grid grid-cols-6">
+      <div className="grid grid-cols-6 max-[1200px]:grid-cols-1">
         <div className="col-span-4">
           <div className="grid grid-cols-4 pt-4">
             <div className="flex justify-center items-center gap-4">
-              <img src="/images/Packing.svg" alt="productdetails" />
-              <p className="text-xl font-bold">Product Details</p>
+              <img src="/images/Packing.svg" alt="productdetails" className="max-[800px]:w-10 max-[500px]:hidden" />
+              <p className="text-xl max-[800px]:text-sm font-bold">Product Details</p>
             </div>
             <div className="flex justify-center items-center gap-4">
-              <img src="/images/MoneyBagRupee.svg" alt="productprice" />
-              <p className="text-xl font-bold">Price</p>
+              <img src="/images/MoneyBagRupee.svg" alt="productprice" className="max-[800px]:w-10 max-[500px]:hidden" />
+              <p className="text-xl max-[800px]:text-sm font-bold">Price</p>
             </div>
             <div className="flex justify-center items-center gap-4">
-              <img src="/images/Eye.svg" alt="productQuntity" />
-              <p className="text-xl font-bold">Quantity</p>
+              <img src="/images/Eye.svg" alt="productQuntity" className="max-[800px]:w-10 max-[500px]:hidden" />
+              <p className="text-xl max-[800px]:text-sm font-bold">Quantity</p>
             </div>
             <div className="flex justify-center items-center gap-4">
-              <img src="/images/Cash.svg" alt="Total" />
-              <p className="text-xl font-bold">Total</p>
+              <img src="/images/Cash.svg" alt="Total" className="max-[800px]:w-10 max-[500px]:hidden" />
+              <p className="text-xl max-[800px]:text-sm font-bold">Total</p>
             </div>
           </div>
 
@@ -97,7 +97,7 @@ const AddToCart = () => {
 
           <div className="">
             {cartItems.length > 0 ? (
-              <ul className="cart-items grid gap-8 mt-4 overflow-x-auto h-80">
+              <ul className="cart-items grid gap-8 mt-4 overflow-x-auto md:h-80 max-[500px]:h-52">
                 {cartItems.map((item) => (
                   <li key={item.productId} className="cart-item">
                     <div className="grid grid-cols-4 items-center">
@@ -115,7 +115,7 @@ const AddToCart = () => {
                             alt={item.productName}
                             className="cart-item-image w-36 justify-self-center"
                           />
-                          <p className="text-lg font-bold justify-self-center">{item.productName}</p>
+                          <p className="text-lg font-bold justify-self-center max-[800px]:text-sm">{item.productName}</p>
                         </div>
                       </div>
 
@@ -149,9 +149,9 @@ const AddToCart = () => {
 
         <div className="col-span-2 px-6 py-4">
           <div className="border-2 border-[#B17457] px-6 py-8 rounded-2xl">
-            <h1 className="font-bold text-4xl">Cart Totals</h1>
+            <h1 className="font-bold text-4xl max-[1200px]:text-xl">Cart Totals</h1>
             <div className="grid  gap-4 mt-8 pb-4">
-              <p className="text-2xl grid grid-cols-2 text-left font-semibold">
+              <p className="text-2xl max-[1200px]:text-lg grid grid-cols-2 text-left font-semibold">
                 Total Price:{" "}
                 <span className="text-[#B17457] font-bold text-center">
                   ₹{totalPrice.toFixed(2)}
@@ -159,22 +159,22 @@ const AddToCart = () => {
               </p>
             </div>
 
-            <p className="text-2xl grid grid-cols-2 text-left font-semibold mt-6">
+            <p className="text-2xl max-[1200px]:text-lg grid grid-cols-2 text-left font-semibold mt-6">
                 Shipping Charge:{" "}
                 <span className="text-[#B17457] font-bold text-center">
                 Depends on delivery
                 </span>
               </p>
 
-              <p className="text-2xl grid grid-cols-2 text-left font-semibold mt-6">
+              <p className="text-2xl max-[1200px]:text-lg grid grid-cols-2 text-left font-semibold mt-6">
                 Total Price:{" "}
                 <span className="text-[#B17457] font-bold text-center">
                   ₹{(parseFloat(totalPrice.toFixed(2)))}
                 </span>
               </p>
 
-              <div className="flex justify-center items-center mt-8">
-                <Link to="/detail">
+              <div className="flex justify-center items-center w-full mt-8">
+                <Link to="/detail" className="w-full">
                     <button
                       type="button"
                       className="bg-[#B17457] py-2 font-bold text-white text-lg w-full  rounded-2xl"

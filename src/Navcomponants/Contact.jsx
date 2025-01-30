@@ -3,51 +3,52 @@ import React from 'react'
 const Contact = () => {
   return (
     <>
-    <div className="bg-[#faf7f0] px-20 h-[78vh]">
-        <div className="grid grid-cols-6 pt-10">
+    <div className="bg-[#faf7f0] lg:px-20 px-10 max-[800px]:pb-20 max-[800px]:pb-16">
+    <h1 className="text-[#4A4947] text-3xl font-extrabold pt-6">Get in touch</h1>
+        <div className="grid grid-cols-6 max-[600px]:grid-cols-1 pt-10 max-[800px]:gap-4">
             
-            <div className="col-span-4">
-                <h1 className="text-[#4A4947] text-3xl font-extrabold">Get in touch</h1>
+            <div className="min-[1000px]:col-span-4 col-span-3 max-[600px]:row-start-2 ">
+               
 
-                <div className="grid grid-cols-6 pt-6 gap-8 contact">
+                <div className="grid grid-cols-6 max-[950px]:grid-cols-4 pt-4 gap-8 contact">
                     
                     <div className="col-span-2 bg-white pt-6 border-2 border-gray-200 rounded-xl">
                         <div className="flex justify-evenly items-center">
-                            <a href="" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/Instagram.svg" alt="ChintamaniInsatgram" className="" /></a>
-                            <a href="" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/Facebook.svg" alt="ChintamaniFacebook" className="" /></a>
+                            <a href="" className=" bg-[#d8d2c233] p-4 max-[1200px]:p-2 rounded-xl"><img src="/images/Instagram.svg" alt="ChintamaniInsatgram" className="max-[1100px]:w-6" /></a>
+                            <a href="" className=" bg-[#d8d2c233] p-4 max-[1200px]:p-2 rounded-xl"><img src="/images/Facebook.svg" alt="ChintamaniFacebook" className="max-[1100px]:w-6" /></a>
                         </div>
                         <p className="text-[#4A4947] font-semibold text-lg text-center pt-3 pb-8">Connect on social media </p>
                     </div>
 
-                    <div className="col-span-2 col-start-4 bg-white pt-6 border-2 border-gray-200 rounded-xl">
+                    <div className="col-span-2 lg:col-start-4 bg-white pt-6 border-2 border-gray-200 rounded-xl">
                         <div className="flex justify-start px-8 items-center">
-                            <a href="https://wa.me/+919146238835" target="_blank" rel="noreferrer" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/WhatsApp.svg" alt="ChintamaniWhatsapp" className="" /></a>
+                            <a href="https://wa.me/+919146238835" target="_blank" rel="noreferrer" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/WhatsApp.svg" alt="ChintamaniWhatsapp" className="max-[1100px]:w-6" /></a>
                             
                         </div>
-                        <p className="text-[#4A4947] font-semibold text-lg text-left px-8 pt-3 pb-8">Chat to support </p>
+                        <p className="text-[#4A4947] font-semibold text-lg text-center md:text-left max-[600px]:text-left max-[600px]:px-5  md:px-8 pt-3 pb-8">Chat to support </p>
                     </div>
 
-                    <div className="col-span-2  bg-white pt-6 border-2 border-gray-200 rounded-xl">
+                    <div className="col-span-2 row-start-2  bg-white pt-6 border-2 border-gray-200 rounded-xl">
                         <div className="flex justify-start px-8 items-center">
-                            <a href="" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/MapMarker.svg" alt="ChintamaniLocation" className="" /></a>
+                            <a href="" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/MapMarker.svg" alt="ChintamaniLocation" className="max-[1100px]:w-6" /></a>
                             
                         </div>
-                        <p className="text-[#4A4947] font-semibold text-lg text-left px-8 pt-3 pb-8">Visit us  </p>
+                        <p className="text-[#4A4947] font-semibold text-lg text-center md:text-left max-[600px]:text-left max-[600px]:px-5  md:px-8 pt-3 pb-8">Visit us  </p>
                     </div>
 
-                    <div className="col-span-2 col-start-4 bg-white pt-6 border-2 border-gray-200 rounded-xl">
+                    <div className="col-span-2 row-start-2 lg:col-start-4 bg-white pt-6 border-2 border-gray-200 rounded-xl">
                         <div className="flex justify-start px-8 items-center">
-                            <a href="" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/Phone.svg" alt="ChintamaniPhone" className="" /></a>
+                            <a href="" className=" bg-[#d8d2c233] p-4 rounded-xl"><img src="/images/Phone.svg" alt="ChintamaniPhone" className="max-[1100px]:w-6" /></a>
                             
                         </div>
-                        <p className="text-[#4A4947] font-semibold text-lg text-left px-8 pt-3 pb-8">Call Us </p>
+                        <p className="text-[#4A4947] font-semibold text-lg text-center md:text-left max-[600px]:text-left max-[600px]:px-5  md:px-8 pt-3 pb-8">Call Us </p>
                     </div>
                     
                 </div>
             </div>
             
             
-            <div className="col-span-2">
+            <div className="min-[1000px]:col-span-2 col-span-3">
                 <div className="bg-white text-[#4A4947] px-8 py-6 rounded-xl">
 
                     <form action="" className="">
