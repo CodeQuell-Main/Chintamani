@@ -54,15 +54,15 @@ const AddToCart = () => {
   };
 
   const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.productPrice * (item.quantity || 1),
+    (acc, item) => acc + item.productPrice ,
     0
   );
 
-  const ShippingPrice= parseFloat("100")
 
   if (error) {
     return <div className="cart-error">{error}</div>;
   }
+
 
   return (
     <div className="bg-[#faf7f0] px-20 h-[78vh] text-[#4A4947]">
@@ -125,20 +125,9 @@ const AddToCart = () => {
 
                       <div className=" justify-self-center">
                         <input
-                          type="number"
+                          readOnly
                           id="quantity"
-                          value={item.quantity || 1}
-                          onChange={(e) =>
-                            setCartItems((prevCartItems) =>
-                              prevCartItems.map((cartItem) =>
-                                cartItem.productId === item.productId
-                                  ? { ...cartItem, quantity: parseInt(e.target.value, 10) || 1 }
-                                  : cartItem
-                              )
-                            )
-                          }
-                          min="1"
-                          max= "5"
+                          value= "1"
                           className="w-14 text-center py-1 bg-[#B17457] text-white rounded-2xl justify-self-center"
                         />
                       </div>
@@ -173,26 +162,25 @@ const AddToCart = () => {
             <p className="text-2xl grid grid-cols-2 text-left font-semibold mt-6">
                 Shipping Charge:{" "}
                 <span className="text-[#B17457] font-bold text-center">
-                ₹{ShippingPrice.toFixed(2)}
+                Depends on delivery
                 </span>
               </p>
 
               <p className="text-2xl grid grid-cols-2 text-left font-semibold mt-6">
                 Total Price:{" "}
                 <span className="text-[#B17457] font-bold text-center">
-                  ₹{(parseFloat(totalPrice.toFixed(2))+ShippingPrice).toFixed(2)}
+                  ₹{(parseFloat(totalPrice.toFixed(2)))}
                 </span>
               </p>
 
               <div className="flex justify-center items-center mt-8">
-                <Link to="/" className="w-full">
+                <Link to="/detail">
                     <button
                       type="button"
                       className="bg-[#B17457] py-2 font-bold text-white text-lg w-full  rounded-2xl"
                     >
-                      Proceed To Order
-                    </button>
-                    
+                      Go to Order
+                    </button>                    
                 </Link>
               </div>
           </div>

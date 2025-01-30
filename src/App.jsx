@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './Navcomponants/Navbar';  // Check this path
-import Contact from './Navcomponants/Contact';  // Check this path
-import Home from './Navcomponants/Home';  // Check this path
-import Products from './Navcomponants/Products';  // Check this path
-import Profile from './Navcomponants/Profile';  // Check this path
-import ProductList from './componants/ProductList';  // Check this path
+import Navbar from './Navcomponants/Navbar';  
+import Contact from './Navcomponants/Contact'; 
+import Home from './Navcomponants/Home'; 
+import Products from './Navcomponants/Products';  
+import Profile from './Navcomponants/Profile'; 
+import ProductList from './componants/ProductList';  
 import AddToCart from './Navcomponants/AddToCart';
 import Orders from './Navcomponants/Orders';
 import ProductDetails from './componants/ProductDetails';
 import Footer from './Navcomponants/Footer';
+import AdminPage from './componants/AdminPage';
+import Detail from './componants/Detail';
 
 const App = () => {
 
@@ -27,9 +29,11 @@ const App = () => {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:category' element={<ProductList />} />
           <Route path= '/products/details/:productId' element = {<ProductDetails/>} />
+          <Route path='/admin' element={<AdminPage/>}/>
           <Route path='/profile' element={<Profile />} />
           <Route path='/addtocart' element={<AddToCart />} />
           <Route path='/order' element={<Orders />} />
+          <Route path='/detail' element={<Detail/>}/>
         </Routes>
         {!hideNavAndFooterRoutes.includes(location.pathname) && <Footer/>}
       </div>

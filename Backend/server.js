@@ -3,33 +3,38 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import Razorpay from "razorpay";
+import dotenv from "dotenv";
+import crypto from "crypto";
 import Masale from "./data/Masale.js";
 import Konkan from "./data/Konkan.js";
 import Flour from "./data/Flour.js";
 import Syrup from "./data/Syrup.js";
+import { type } from "os";
 
 const app = express();
 const port = 4000;
 const key = "secret_key"; // JWT secret key
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
 
 // Database connection
 mongoose
-    .connect("mongodb+srv://omkar:Omkar%401404@cluster0.j9qon.mongodb.net/Chintamani?retryWrites=true&w=majority")
+    .connect("mongodb://localhost:27017/Chintamani")
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("Database connection failed:", err));
 
 // Schemas
 const UserSchema = new mongoose.Schema({
     Name: { type: String, required: true },
-    Email: { type: String}, // For Google users
-    Phone: { type: Number}, // Optional for Google users
-    Password: { type: String }, // Optional for Google users
+    Email: { type: String }, 
+    Phone: { type: Number }, 
+    Password: { type: String },
     AddToCart: { type: [String], default: [] },
     Order: { type: [String], default: [] },
-    PhotoURL: { type: String }, // Optional profile photo URL
+    role: {type: String , enum: ['Admin']}
 });
 
 
@@ -42,9 +47,32 @@ const ProductSchema = new mongoose.Schema({
     Category: { type: String },
 });
 
+const OrderSchema = new mongoose.Schema({
+    customerName: { type: String, required: true },
+    phone: { type: String, required: true },
+    email: {type: String, require: true},
+    address: {
+        street: { type: String, required: true },
+        state: { type: String, required: true },
+        zipCode: { type: String, required: true }
+    },
+    cartItems: [
+        {
+            productId: {type: String, required: true},
+            productName: { type: String, required: true },
+            productPrice: { type: Number, required: true },
+            quantity: { type: Number, required: true }
+        }
+    ],
+    totalAmount: { type: Number, required: true },
+    orderID: { type: String, required: true, unique: true },
+    isPaid: { type: Boolean, default: false },
+}, { timestamps: true });
+
 // Models
 const User = mongoose.model("User", UserSchema);
 const Product = mongoose.model("Product", ProductSchema);
+const Order = mongoose.model("Order", OrderSchema);
 
 // Middleware to authenticate token
 const authenticateToken = (req, res, next) => {
@@ -106,6 +134,8 @@ app.get("/api/fetch-product/:productId", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+
+// google auth
 app.post("/api/google-auth", async (req, res) => {
     const { name, email, photoURL } = req.body;
 
@@ -114,7 +144,6 @@ app.post("/api/google-auth", async (req, res) => {
         let user = await User.findOne({ Email: email });
 
         if (!user) {
-            // Create a new user if it doesn't exist
             user = new User({
                 Name: name,
                 Email: email,
@@ -191,10 +220,9 @@ app.post("/api/sign-in", async (req, res) => {
     }
 });
 
-// Fetch User Details (with authentication)
+// Fetch User Details 
 app.get("/api/user-details", authenticateToken, async (req, res) => {
     try {
-        // Get user details using the userId attached by the middleware
         const user = await User.findById(req.userId, "Name Phone");
         if (!user) {
             return res.status(404).json({ message: "User not found" });
@@ -222,34 +250,35 @@ app.get("/api/fetch-cart-products", authenticateToken, async (req, res) => {
     }
 });
 
-// Fetch Last Orders (with authentication)
-app.get("/api/fetch-last-orders", authenticateToken, async (req, res) => {
-    try {
-        const user = await User.findById(req.userId, "Order");
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
+// // Fetch Last Orders 
+// app.get("/api/fetch-last-orders", authenticateToken, async (req, res) => {
+//     try {
+//         const user = await User.findById(req.userId, "Order");
+//         if (!user) {
+//             return res.status(404).json({ message: "User not found" });
+//         }
 
-        const productsData = await Product.find({ productId: { $in: user.Order } });
-        res.status(200).json(productsData);
-    } catch (error) {
-        console.error("Error fetching last orders:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
+//         const productsData = await Product.find({ productId: { $in: user.Order } });
+//         res.status(200).json(productsData);
+//     } catch (error) {
+//         console.error("Error fetching last orders:", error);
+//         res.status(500).json({ message: "Internal Server Error" });
+//     }
+// });
+
 // Add product to user's cart (with authentication)
 app.post("/api/add-to-cart", authenticateToken, async (req, res) => {
     const { productId } = req.body;
 
     try {
-        const user = await User.findById(req.userId); 
+        const user = await User.findById(req.userId);
         if (!user) {
             return res.status(404).send("User not found");
         }
 
         if (!user.AddToCart.includes(productId)) {
             user.AddToCart.push(productId);
-            await user.save(); 
+            await user.save();
             return res.status(200).send("Product added to cart");
         } else {
             return res.status(400).send("Product is already in the cart");
@@ -284,5 +313,131 @@ app.post("/api/remove-from-cart", authenticateToken, async (req, res) => {
     }
 });
 
+// Set order api
+app.post("/api/store-order", async (req, res) => {
+
+    try {
+        const { customerName, phone, email, address, cartItems, totalAmount, orderID } = req.body;
+
+        if (!customerName || !phone || !email || !address || !cartItems || !totalAmount || !orderID) {
+            return res.status(400).json({ message: "Missing required fields" });
+        }
+
+        if (!address.street || !address.state || !address.zipCode) {
+            return res.status(400).json({ message: "Incomplete address information" });
+        }
+
+        if (!Array.isArray(cartItems) || cartItems.length === 0) {
+            return res.status(400).json({ message: "Cart items are required and must be an array" });
+        }
+
+        for (let item of cartItems) {
+            if (!item.quantity || item.quantity <= 0) {
+                return res.status(400).json({ message: `Invalid quantity for product ${item.productId}` });
+            }
+        }
+
+        const productIds = cartItems.map(item => item.productId); 
+        const products = await Product.find({ 'productId': { $in: productIds } }); 
+
+        if (products.length !== cartItems.length) {
+            return res.status(400).json({ message: "Some products not found in the database" });
+        }
+
+        for (let item of cartItems) {
+            const product = products.find(p => p.productId === item.productId);
+            if (product) {
+                product.stock -= item.quantity; 
+                if (product.stock < 0) {
+                    return res.status(400).json({ message: `Not enough stock for product ${item.productId}` });
+                }
+                await product.save(); 
+            }
+        }
+
+        const newOrder = new Order({
+            customerName,
+            phone,
+            email,
+            address,
+            cartItems,
+            totalAmount,
+            orderID,
+            isPaid: false,
+        });
+
+        await newOrder.save();
+        res.status(201).json({ message: "Order stored successfully", order: newOrder });
+    } catch (error) {
+        console.error("Error storing order:", error);
+
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({ message: "Validation error", error: error.message });
+        } else if (error instanceof mongoose.Error) {
+            return res.status(500).json({ message: "Database error", error: error.message });
+        } else {
+            return res.status(500).json({ message: "Internal Server Error", error: error.message });
+        }
+    }
+});
+
+
+// Fetch all orders
+app.get('/api/get-orders', async (req, res) => {
+    try {
+        const orders = await Order.find().populate('cartItems.productId'); 
+
+        if (!orders) {
+            return res.status(404).json({ message: 'No orders found' });
+        }
+
+        res.status(200).json({ orders });
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+// Razorpay instance
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
+// API to create an order 
+app.post("/api/create-order", async (req, res) => {
+    try {
+        const { amount, currency } = req.body;
+
+        const options = {
+            amount: amount * 100, // Convert to paise
+            currency,
+            receipt: `receipt_${Date.now()}`,
+        };
+
+        const order = await razorpay.orders.create(options);
+        res.status(200).json(order);
+    } catch (error) {
+        console.error("Error creating order:", error);
+        res.status(500).json({ message: "Something went wrong", error });
+    }
+});
+
+// API to verify payment
+app.post("/api/verify-payment", (req, res) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    const expectedSignature = crypto
+        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .update(body)
+        .digest("hex");
+
+    if (expectedSignature === razorpay_signature) {
+        res.status(200).json({ message: "Payment verified successfully" });
+    } else {
+        res.status(400).json({ message: "Invalid signature" });
+    }
+});
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
