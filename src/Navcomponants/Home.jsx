@@ -15,8 +15,12 @@ const Home = () => {
     <div className="">
         <section className="Home" id='Home'>
        
+       
+        <div className=" max-[500px]:flex justify-center items-center md:m-6 ">
+          <img src="/images/Logo.svg" alt="" className="md:w-24 w-44 max-[900px]:mt-10" />
+        </div>
 
-        <div className="flex flex-col justify-center items-start  text-white mt-60 mx-6 md:mt-20 2xl:mt-52 md:mx-20 mid-home ">
+        <div className="flex flex-col justify-center items-start  text-white mt-20 mx-6 md:mt-20 2xl:mt-52 md:mx-20 mid-home ">
           <p className="font-bold text-[30px] md:text-[60px] 2xl:text-[70px]">चिंतामणी फुड प्रोडक्टस्</p>
           <div className="">
           <p className="mt-10 md:mt-6 md:text-3xl text-left">जिभेवर रेंगाळणारी मालवणी चव <br  /> हेच आमचे वैशिष्ट !! </p>
@@ -30,12 +34,17 @@ const Home = () => {
 
         </div>
 
+
+       
+
+        <div className="absolute bottom-0 w-full">
+              <p className="text-center md:text-xl text-[10px] text-white flex justify-center  items-center gap-3 ">All right reserved <li className=""><Link to="/Privacy-Policy">Privacy policy</Link></li> <li>&copy; Chintamani Food Products</li>  <li><a href="https://codequell.com/" target='_blank' className="">Developed by CodeQuell</a></li>  </p>
+        </div>
+
       
     </section>
 
-      <div className="Home-Logo max-[500px]:flex justify-center items-center absolute top-2 left-4">
-          <img src="/images/Logo.svg" alt="" className="md:w-24 w-44 max-[900px]:mt-10" />
-        </div>
+      
     </div>
   );
 };

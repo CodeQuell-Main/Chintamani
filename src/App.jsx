@@ -12,11 +12,13 @@ import ProductDetails from './componants/ProductDetails';
 import Footer from './Navcomponants/Footer';
 import AdminPage from './componants/AdminPage';
 import Detail from './componants/Detail';
+import Page from './Navcomponants/PrivacyPolicy';
+import PrivacyPolicy from './Navcomponants/PrivacyPolicy';
 
 const App = () => {
 
   const location = useLocation(); 
-  const hideNavAndFooterRoutes = ['/', '/profile']; 
+  const hideNavAndFooterRoutes = ['/', '/profile', '/Privacy-Policy']; 
 
   return (
     
@@ -32,6 +34,7 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/addtocart' element={<AddToCart />} />
           <Route path='/detail' element={<Detail/>}/>
+          <Route path='/Privacy-Policy' element={<PrivacyPolicy/>} />
         </Routes>
         {!hideNavAndFooterRoutes.includes(location.pathname) && <Footer/>}
       </div>
