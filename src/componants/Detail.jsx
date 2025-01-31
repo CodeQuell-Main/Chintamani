@@ -25,7 +25,7 @@ const Detail = () => {
 
     const createOrder = async () => {
         try {
-            const { fullName, streetAddress, phoneNumber,email, state, zipCode } = formData;
+            const { fullName, streetAddress, phoneNumber, email, state, zipCode } = formData;
     
             if (!fullName || !streetAddress || !phoneNumber || !email || !state || !zipCode) {
                 alert("Please fill all required fields");
@@ -33,28 +33,11 @@ const Detail = () => {
             }
     
             const orderID = "ORD" + Date.now();
-
+    
             const updatedCartItems = cartItems.map(item => ({
                 ...item,
                 quantity: item.quantity || 1, 
             }));
-    
-            const orderData = {
-                customerName: fullName,
-                phone: phoneNumber,
-                email: email,
-                address: { street: streetAddress, state, zipCode },
-                cartItems: updatedCartItems,
-                totalAmount: totalPrice,
-                orderID,
-            };
-    
-            const response = await axios.post("http://localhost:4000/api/store-order", orderData);
-    
-            if (response.status === 201) {
-                alert("Order stored successfully!");
-                console.log("Order Data:", response.data);
-            }
     
             // Create Razorpay order
             const { data: order } = await axios.post("http://localhost:4000/api/create-order", {
@@ -76,11 +59,11 @@ const Detail = () => {
                 order_id: order.id,
                 handler: function (response) {
                     console.log("Payment successful:", response);
-                    verifyPayment(response, orderID);
+                    verifyPayment(response, orderID, updatedCartItems);
                 },
                 prefill: {
                     name: fullName,
-                    email : email ,
+                    email: email,
                     contact: phoneNumber,
                 },
             };
@@ -91,26 +74,44 @@ const Detail = () => {
             console.error("Error creating order:", error);
         }
     };
-
-    const verifyPayment = async (paymentDetails) => {
+    
+    const verifyPayment = async (paymentDetails, orderID, updatedCartItems) => {
         try {
-
             const response = await axios.post("http://localhost:4000/api/verify-payment", {
                 razorpay_order_id: paymentDetails.razorpay_order_id,
                 razorpay_payment_id: paymentDetails.razorpay_payment_id,
                 razorpay_signature: paymentDetails.razorpay_signature,
             });
-
+    
             if (response.data.message === "Payment verified successfully") {
                 alert("Payment successful!");
+    
+                // Store the order in the database now, including the payment ID
+                await axios.post("http://localhost:4000/api/store-order", {
+                    customerName: formData.fullName,
+                    phone: formData.phoneNumber,
+                    email: formData.email,
+                    address: { 
+                        street: formData.streetAddress, 
+                        state: formData.state, 
+                        zipCode: formData.zipCode 
+                    },
+                    cartItems: updatedCartItems,
+                    totalAmount: totalPrice,
+                    orderID,
+                    paymentID: paymentDetails.razorpay_payment_id, // Store payment ID
+                });
+    
+                alert("Order stored successfully!");
             } else {
-                alert("Payment verification failed!");
+                alert("Payment verification failed! Order not stored.");
             }
         } catch (error) {
             console.error("Error verifying payment:", error);
         }
     };
-
+    
+    
     useEffect(() => {
         const fetchCartProducts = async () => {
             const token = localStorage.getItem("token");

@@ -71,18 +71,17 @@ const Profile = () => {
       const userResponse = await axios.get(
         "http://localhost:4000/api/user-details",
         {
-          headers: { Authorization: `Bearer ${token}` }, // ✅ Fixed template literal
+          headers: { Authorization: `Bearer ${token}` }, 
         }
       );
 
       setUser(userResponse.data);
       localStorage.setItem("user", JSON.stringify(userResponse.data));
 
-      // ✅ Redirect to "/admin" if user credentials match
       if (phone === "1234567890" && password === "1234") {
         navigate("/admin");
       } else {
-        navigate("/"); // Default route if not admin
+        navigate("/"); 
       }
     } catch (err) {
       setError(err.response?.data || "Error during sign-in");

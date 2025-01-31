@@ -66,6 +66,7 @@ const OrderSchema = new mongoose.Schema({
     ],
     totalAmount: { type: Number, required: true },
     orderID: { type: String, required: true, unique: true },
+    paymentID: {type: String, required: true},
     isPaid: { type: Boolean, default: false },
 }, { timestamps: true });
 
@@ -317,9 +318,9 @@ app.post("/api/remove-from-cart", authenticateToken, async (req, res) => {
 app.post("/api/store-order", async (req, res) => {
 
     try {
-        const { customerName, phone, email, address, cartItems, totalAmount, orderID } = req.body;
+        const { customerName, phone, email, address, cartItems, totalAmount, orderID , paymentID} = req.body;
 
-        if (!customerName || !phone || !email || !address || !cartItems || !totalAmount || !orderID) {
+        if (!customerName || !phone || !email || !address || !cartItems || !totalAmount || !orderID || !paymentID) {
             return res.status(400).json({ message: "Missing required fields" });
         }
 
@@ -363,6 +364,7 @@ app.post("/api/store-order", async (req, res) => {
             cartItems,
             totalAmount,
             orderID,
+            paymentID,
             isPaid: false,
         });
 
@@ -397,6 +399,36 @@ app.get('/api/get-orders', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 });
+
+app.delete('/api/delete-order/:orderID', async (req, res) => {
+    try {
+        const { orderID } = req.params;
+
+        // Check if order exists
+        const order = await Order.findOne({ orderID });
+        if (!order) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+
+        // Restore product stock before deleting the order
+        for (let item of order.cartItems) {
+            const product = await Product.findOne({ productId: item.productId });
+            if (product) {
+                product.stock += item.quantity; // Restoring stock quantity
+                await product.save();
+            }
+        }
+
+        // Delete the order
+        await Order.deleteOne({ orderID });
+
+        res.status(200).json({ message: "Order deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting order:", error);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+});
+
 
 // Razorpay instance
 const razorpay = new Razorpay({
