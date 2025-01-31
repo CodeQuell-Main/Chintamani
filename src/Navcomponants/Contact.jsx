@@ -1,6 +1,36 @@
 import React from 'react'
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+      });
+      const [successMessage, setSuccessMessage] = useState('');
+    
+      useEffect(() => {
+        emailjs.init('phT3bVQyJS6V2q99B'); // Replace with your actual User ID
+      }, []);
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        emailjs.send('service_q4nja4q', 'template_j71t2rl', formData)
+          .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            setSuccessMessage('Your message has been sent successfully!');
+            setFormData({ name: '', email: '', message: '' });
+          }, (error) => {
+            console.error('Email send failed:', error);
+            setSuccessMessage('Failed to send your message. Please try again.');
+          });
+      };
+
   return (
     <>
     <div className="bg-[#faf7f0] lg:px-20 px-10 max-[800px]:pb-20 max-[800px]:pb-16">
@@ -51,20 +81,20 @@ const Contact = () => {
             <div className="min-[1000px]:col-span-2 col-span-3">
                 <div className="bg-white text-[#4A4947] px-8 py-6 rounded-xl">
 
-                    <form action="" className="">
+                    <form action="" className="" onSubmit={handleSubmit}>
                         <div className="flex flex-col justify-start gap-2">
                             <label htmlFor="" className='font-bold text-lg '>Name </label>
-                            <input type="text" name="" id="" className=' rounded-full text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full' />
+                            <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} className=' rounded-full text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full' />
                         </div>
 
                         <div className="flex flex-col justify-start gap-2 pt-6">
                             <label htmlFor="" className='font-bold text-lg '>Email </label>
-                            <input type="email" name="" id="" className=' rounded-full text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full' />
+                            <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} className=' rounded-full text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full' />
                         </div>
 
                         <div className="flex flex-col justify-start gap-2 pt-6">
                             <label htmlFor="" className='font-bold text-lg '>Message </label>
-                            <textarea name="" id="" rows={5} placeholder='Text Here' className=" rounded-2xl text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full"></textarea>
+                            <textarea name="message" id="message" value={formData.email} onChange={handleChange} rows={5} placeholder='Text Here' className=" rounded-2xl text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full"></textarea>
                         </div>
 
                         <div className="flex justify-center items-center pt-6">
