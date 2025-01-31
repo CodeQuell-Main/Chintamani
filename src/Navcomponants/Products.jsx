@@ -14,17 +14,14 @@ const Products = () => {
         setError(null);
 
         try {
-            // Fetch products from the API
             const response = await axios.get(`http://localhost:4000/api/fetch-products/${category}`);
             
-            // Navigate to the category page and pass the products via state
             navigate(`/products/${category}`, { state: { products: response.data } });
         } catch (err) {
-            // Handle errors and set error message
+
             setError("Failed to fetch products. Please try again.");
             console.error("Error fetching products:", err);
         } finally {
-            // Stop the loading state
             setLoading(false);
         }
     };
@@ -40,7 +37,7 @@ const Products = () => {
                     <div className="card flex flex-col pt-4 justify-self-center  transform transition-all hover:scale-105" key={category}>
                         <Link to={`/products/${category}`}>
                         <img
-                            src={`images/${category}.png`} // Ensure you have the correct path to your images
+                            src={`images/${category}.png`} 
                             alt={category}
                             className="card-image  w-52 "
                         />
@@ -52,10 +49,7 @@ const Products = () => {
                 ))}
             </div>
 
-            {/* Display loading state */}
             {loading && <p>Loading...</p>}
-
-            {/* Display error message */}
             {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );

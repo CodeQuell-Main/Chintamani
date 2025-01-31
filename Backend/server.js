@@ -113,7 +113,7 @@ app.post("/api/add-products/syrup", (req, res) => addProducts(req, res, "Syrup",
 app.get("/api/fetch-products/:category", async (req, res) => {
     const { category } = req.params;
     try {
-        const products = await Product.find({ Category: new RegExp(`^${category}$`, "i") }); // Case-insensitive regex
+        const products = await Product.find({ Category: new RegExp(`^${category}$`, "i") }); 
         res.status(200).json(products);
     } catch (error) {
         console.error(`Error fetching ${category} products:`, error);
@@ -141,14 +141,13 @@ app.post("/api/google-auth", async (req, res) => {
     const { name, email, photoURL } = req.body;
 
     try {
-        // Check if the user already exists
         let user = await User.findOne({ Email: email });
 
         if (!user) {
             user = new User({
                 Name: name,
                 Email: email,
-                PhotoURL: photoURL, // You might want to add this field to the schema
+                PhotoURL: photoURL,
                 AddToCart: [],
                 Order: [],
             });
@@ -235,7 +234,7 @@ app.get("/api/user-details", authenticateToken, async (req, res) => {
     }
 });
 
-// Fetch AddToCart Products (with authentication)
+// Fetch AddToCart Products 
 app.get("/api/fetch-cart-products", authenticateToken, async (req, res) => {
     try {
         const user = await User.findById(req.userId, "AddToCart");
@@ -251,23 +250,7 @@ app.get("/api/fetch-cart-products", authenticateToken, async (req, res) => {
     }
 });
 
-// // Fetch Last Orders 
-// app.get("/api/fetch-last-orders", authenticateToken, async (req, res) => {
-//     try {
-//         const user = await User.findById(req.userId, "Order");
-//         if (!user) {
-//             return res.status(404).json({ message: "User not found" });
-//         }
-
-//         const productsData = await Product.find({ productId: { $in: user.Order } });
-//         res.status(200).json(productsData);
-//     } catch (error) {
-//         console.error("Error fetching last orders:", error);
-//         res.status(500).json({ message: "Internal Server Error" });
-//     }
-// });
-
-// Add product to user's cart (with authentication)
+// Add product to user's cart 
 app.post("/api/add-to-cart", authenticateToken, async (req, res) => {
     const { productId } = req.body;
 
@@ -403,23 +386,19 @@ app.get('/api/get-orders', async (req, res) => {
 app.delete('/api/delete-order/:orderID', async (req, res) => {
     try {
         const { orderID } = req.params;
-
-        // Check if order exists
         const order = await Order.findOne({ orderID });
         if (!order) {
             return res.status(404).json({ message: "Order not found" });
         }
 
-        // Restore product stock before deleting the order
         for (let item of order.cartItems) {
             const product = await Product.findOne({ productId: item.productId });
             if (product) {
-                product.stock += item.quantity; // Restoring stock quantity
+                product.stock += item.quantity; 
                 await product.save();
             }
         }
 
-        // Delete the order
         await Order.deleteOne({ orderID });
 
         res.status(200).json({ message: "Order deleted successfully" });

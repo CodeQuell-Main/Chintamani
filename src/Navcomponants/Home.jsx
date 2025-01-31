@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate(); 
   const handleExploreClick = () => {
-    navigate("/products"); // Navigate to the "MyProducts" page
+    navigate("/products"); 
   };
 
   return (

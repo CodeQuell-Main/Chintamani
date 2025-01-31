@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <div>
-
-      
-      {/* Desktop Footer */}
-      
-
-      {/* Mobile Footer */}
       <div className="block md:hidden">
         <div className="fixed bottom-[0%] w-full bg-[#D8D2C2] py-2">
           <nav>

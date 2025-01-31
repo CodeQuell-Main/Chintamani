@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState , useEffect } from 'react';
 import emailjs from 'emailjs-com';
 
 const Contact = () => {
@@ -20,16 +21,29 @@ const Contact = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        emailjs.send('service_q4nja4q', 'template_j71t2rl', formData)
+      
+        emailjs
+          .send(
+            'service_q4nja4q', 
+            'template_zspzjji', 
+            {
+              from_name: formData.name,   
+              from_email: formData.email,
+              message: formData.message,
+            },
+            'phT3bVQyJS6V2q99B' 
+          )
           .then((response) => {
             console.log('SUCCESS!', response.status, response.text);
             setSuccessMessage('Your message has been sent successfully!');
             setFormData({ name: '', email: '', message: '' });
-          }, (error) => {
+          })
+          .catch((error) => {
             console.error('Email send failed:', error);
             setSuccessMessage('Failed to send your message. Please try again.');
           });
       };
+      
 
   return (
     <>
@@ -94,7 +108,7 @@ const Contact = () => {
 
                         <div className="flex flex-col justify-start gap-2 pt-6">
                             <label htmlFor="" className='font-bold text-lg '>Message </label>
-                            <textarea name="message" id="message" value={formData.email} onChange={handleChange} rows={5} placeholder='Text Here' className=" rounded-2xl text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full"></textarea>
+                            <textarea name="message" id="message" value={formData.message} onChange={handleChange} rows={5} placeholder='Text Here' className=" rounded-2xl text-black px-4 py-2 border-[1.5px] border-black bg-[#F6F6F6] w-full"></textarea>
                         </div>
 
                         <div className="flex justify-center items-center pt-6">

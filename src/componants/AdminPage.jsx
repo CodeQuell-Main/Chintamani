@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AdminPage = () => {
     const [orders, setOrders] = useState([]);
-    const [completedOrders, setCompletedOrders] = useState({}); // Track completed orders
+    const [completedOrders, setCompletedOrders] = useState({}); 
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -11,7 +11,6 @@ const AdminPage = () => {
                 const response = await axios.get('http://localhost:4000/api/get-orders');
                 setOrders(response.data.orders);
 
-                // Initialize completed orders state
                 const initialCompletedState = {};
                 response.data.orders.forEach(order => {
                     initialCompletedState[order.orderID] = order.isComplete || false;
@@ -40,7 +39,7 @@ const AdminPage = () => {
     const handleComplete = (orderID) => {
         setCompletedOrders(prevState => ({
             ...prevState,
-            [orderID]: !prevState[orderID] // Toggle completion status
+            [orderID]: !prevState[orderID] 
         }));
     };
 

@@ -86,7 +86,6 @@ const Detail = () => {
             if (response.data.message === "Payment verified successfully") {
                 alert("Payment successful!");
     
-                // Store the order in the database now, including the payment ID
                 await axios.post("http://localhost:4000/api/store-order", {
                     customerName: formData.fullName,
                     phone: formData.phoneNumber,
@@ -99,7 +98,7 @@ const Detail = () => {
                     cartItems: updatedCartItems,
                     totalAmount: totalPrice,
                     orderID,
-                    paymentID: paymentDetails.razorpay_payment_id, // Store payment ID
+                    paymentID: paymentDetails.razorpay_payment_id, 
                 });
     
                 alert("Order stored successfully!");

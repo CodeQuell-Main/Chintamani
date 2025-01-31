@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import Loder from './Loder';
-// import "../style/productdetail.css";
 
 const ProductDetails = () => {
     const { productId } = useParams();
@@ -10,7 +9,6 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [reviews, setReviews] = useState([]);
     const [newReview, setNewReview] = useState('');
 
     // Fetch product details
@@ -56,40 +54,6 @@ const ProductDetails = () => {
             setError("Failed to add product to cart.");
         }
     };
-
-    // Handle review submission
-    const handleReviewSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!newReview) {
-            setError("Please enter a review before submitting.");
-            return;
-        }
-
-        const token = localStorage.getItem("token");
-        if (!token) {
-            setError("Please sign in to submit a review.");
-            return;
-        }
-
-        try {
-            await axios.post(
-                "http://localhost:4000/api/add-review",
-                { productId, review: newReview },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            setReviews([...reviews, { review: newReview, user: "You" }]); // Update the reviews list locally
-            setNewReview('');
-            alert("Review submitted successfully!");
-        } catch (err) {
-            setError("Failed to submit review.");
-        }
-    };
-    
 
     if (loading) return <Loder/>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -164,37 +128,7 @@ const ProductDetails = () => {
           <div className="grid grid-cols-6 max-[800px]:grid-cols-1 max-[800px]:gap-4 mx-44 max-[1000px]:mx-12 max-[500px]:mx-6 font-semibold mt-8 ">
               <div className="text-xl max-[800px]:text-[24px] font-extrabold">Product Description : </div>
               <div className="col-span-5 font-medium text-left text-sm product-details leading-6">{product.productDetail}</div>
-            </div>
-            
-            <div className="mt-10  flex flex-col justify-center items-center gap-4">
-                <h3 className='font-bold text-2xl font-serif'>Reviews</h3>
-                {reviews.length > 0 ? (
-                    <ul>
-                        {reviews.map((review, index) => (
-                            <li key={index}>
-                                <strong>{review.user}:</strong> {review.review}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p className='font-bold text-lg font-serif'>No reviews yet. Be the first to review this product!</p>
-                )}
-                <form onSubmit={handleReviewSubmit} className='mt-4'>
-                    <textarea
-                        value={newReview}
-                        cols="20"
-                        onChange={(e) => setNewReview(e.target.value)}
-                        placeholder="Write your review here..."
-                        className=' px-6 py-2 rounded-2xl bg-[#faf7f0] border-2 border-black w-96'
-                    />
-                    <div className="flex justify-center items-center pb-4">
-                    <button type="submit" className='text-xl font-bold bg-sky-400 flex justify-center items-center px-10 hover:bg-sky-700 py-1 rounded-xl text-white '>Submit Review</button>
-                    </div>
-                </form>
-            </div>
-          
-
-           
+            </div>           
         </div>
     );
 
