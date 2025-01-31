@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 function PrivacyPolicy () {
     return(
         <>
-        <section className="pp bg-gradient-to-r from-[##b6e7f8] to-[#d7d7f2] pb-20 pt-4">
+        <section className="pp bg-gradient-to-r from-[#b6e7f8] to-[#d7d7f2] pb-20 pt-4">
         <div className=""><Link to='/'><img src="/images/mobile-Home.svg" alt="" className="mb-2" /></Link></div>
         <div className="ppmain flex flex-col justify-center items-center mx-10 md:mx-20 ">  
         <div className="header w-full ">
