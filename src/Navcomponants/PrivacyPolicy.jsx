@@ -58,9 +58,9 @@ function PrivacyPolicy () {
         <div>
             <h2 className="font-bold text-xl">8. Contact Us</h2>
             <p>For questions or concerns about this Privacy Policy, please contact us at:</p>
-            <p><span>Email:</span>codequell@123</p>
-            <p><span>Phone:</span>1234567890</p>
-            <p><span>Address:</span>asdfgh xcvbn ertyu vbn fghj ertyu </p>
+            <p><span>Email:</span>chintamanifoodproductscq@gmail.com</p>
+            <p><span>Phone:</span>+91 9404164156</p>
+            <p><span>Address:</span>Shop No.1goverment Hospital Oop Super Grahak Bajar, near by Post Office, Kudal, Maharashtra 416520 </p>
         </div>
         </div>
         </div>

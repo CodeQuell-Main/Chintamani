@@ -58,8 +58,8 @@ const Contact = () => {
                     
                     <div className="col-span-2 bg-white pt-6 border-2 border-gray-200 rounded-xl">
                         <div className="flex justify-evenly items-center">
-                            <a href="" className=" bg-[#d8d2c233] p-4 max-[1200px]:p-2 rounded-xl"><img src="/images/Instagram.svg" alt="ChintamaniInsatgram" className="max-[1100px]:w-6" /></a>
-                            <a href="" className=" bg-[#d8d2c233] p-4 max-[1200px]:p-2 rounded-xl"><img src="/images/Facebook.svg" alt="ChintamaniFacebook" className="max-[1100px]:w-6" /></a>
+                            <a href="https://www.instagram.com/chintamanifoodproductsofficial/" className=" bg-[#d8d2c233] p-4 max-[1200px]:p-2 rounded-xl"><img src="/images/Instagram.svg" alt="ChintamaniInsatgram" className="max-[1100px]:w-6" /></a>
+                            <a href="https://www.facebook.com/share/15AYpoEArs/" className=" bg-[#d8d2c233] p-4 max-[1200px]:p-2 rounded-xl"><img src="/images/Facebook.svg" alt="ChintamaniFacebook" className="max-[1100px]:w-6" /></a>
                         </div>
                         <p className="text-[#4A4947] font-semibold text-lg text-center pt-3 pb-8">Connect on social media </p>
                     </div>
