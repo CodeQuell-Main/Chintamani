@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import "../style/profile.css";
+
 import {
   auth,
   googleProvider,
@@ -213,32 +213,32 @@ const Profile = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="md:w-[25vw] w-full rounded-2xl px-6 py-2 mt-1 border-2 border-[#676666cd]"
+                      className="w-full px-6 py-2 rounded-full"
                     />
                   </div>
                 )}
 
-                <div>
-                  <label>Phone:</label>
+                <div className="mt-4">
+                  <label className="md:text-[#676666] text-white font-semibold text-xl">Phone:</label>
                   <input
                     type="text"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="w-full"
+                    className="w-full px-6 py-2 rounded-full"
                   />
                 </div>
 
-                <div>
-                  <label>Password:</label>
+                <div className="mt-4">
+                  <label className="md:text-[#676666] text-white font-semibold text-xl">Password:</label>
                   <input
                     type="password"
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full"
+                    className="w-full px-6 py-2 rounded-full "
                   />
                 </div>
 

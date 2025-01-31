@@ -8,7 +8,6 @@ import Products from './Navcomponants/Products';
 import Profile from './Navcomponants/Profile'; 
 import ProductList from './componants/ProductList';  
 import AddToCart from './Navcomponants/AddToCart';
-import Orders from './Navcomponants/Orders';
 import ProductDetails from './componants/ProductDetails';
 import Footer from './Navcomponants/Footer';
 import AdminPage from './componants/AdminPage';
@@ -32,7 +31,6 @@ const App = () => {
           <Route path='/admin' element={<AdminPage/>}/>
           <Route path='/profile' element={<Profile />} />
           <Route path='/addtocart' element={<AddToCart />} />
-          <Route path='/order' element={<Orders />} />
           <Route path='/detail' element={<Detail/>}/>
         </Routes>
         {!hideNavAndFooterRoutes.includes(location.pathname) && <Footer/>}

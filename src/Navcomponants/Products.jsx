@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loder from "../componants/Loder";
-// import "../style/products.css";
+
 import axios from "axios";
 
 const Products = () => {
@@ -37,12 +37,12 @@ const Products = () => {
              <p className="text-center text-[#4A4947] font-bold text-[40px] pt-14 page"> आमची दर्जेदार उत्पादने </p>
             <div className="cards grid md:grid-cols-4 grid-cols-2 md:gap-0 gap-10 md:mx-0 mx-10 mt-4 mb-4">
                 {["masale", "flour", "syrup", "konkan"].map((category) => (
-                    <div className="card flex flex-col pt-4 justify-self-center" key={category}>
+                    <div className="card flex flex-col pt-4 justify-self-center  transform transition-all hover:scale-105" key={category}>
                         <Link to={`/products/${category}`}>
                         <img
                             src={`images/${category}.png`} // Ensure you have the correct path to your images
                             alt={category}
-                            className="card-image grayscale hover:grayscale-0 transform transition-all hover:scale-1.05 w-52 "
+                            className="card-image  w-52 "
                         />
                         </Link>
                         <button onClick={() => fetchProducts(category)} className="text-black text-xl px-4 py-2 font-bold hover:bg-[#faf7f0] ">

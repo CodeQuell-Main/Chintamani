@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import "../style/home.css"
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -33,7 +33,7 @@ const Home = () => {
       
     </section>
 
-      <div className="Home-Logo max-[500px]:flex justify-center items-center absolute top-2 left-2">
+      <div className="Home-Logo max-[500px]:flex justify-center items-center absolute top-2 left-4">
           <img src="/images/Logo.svg" alt="" className="md:w-24 w-44 max-[900px]:mt-10" />
         </div>
     </div>
