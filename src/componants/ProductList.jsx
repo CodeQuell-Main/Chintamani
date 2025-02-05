@@ -46,10 +46,10 @@ const ProductList = () => {
     };
 
     if (loading) return <Loder/>;
-    if (error) return <p style={{ color: "red" }}>{error}</p>;
+    if (error) return <div className="cart-error flex justify-center items-center text-4xl h-[80vh] text-red-600">{error}</div>;
 
     return (
-        <div className="product-list-container bg-[#faf7f0] max-[800px]:pb-16">
+        <div className="product-list-container  max-[800px]:pb-16">
             <h1  className="font-bold text-2xl marathi text-center">Products in {category}</h1>
             <div className="product-list grid grid-cols-4 max-[950px]:grid-cols-2 items-center gap-y-14 mt-8 pb-4  ">
                 {products.map((product) => (

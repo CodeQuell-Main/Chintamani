@@ -161,11 +161,11 @@ const Detail = () => {
     );
 
     if (error) {
-        return <div className="cart-error">{error}</div>;
+        return <div className="cart-error flex justify-center items-center text-4xl h-[80vh] text-red-600">{error}</div>;
     }
 
   return (
-    <div className="bg-[#faf7f0] lg:px-20 md:px-10 px-3  md:h-[78vh] text-[#4A4947]">
+    <div className=" lg:px-20 md:px-10 px-3  md:h-[78vh] text-[#4A4947]">
 
             <div className="">
                 <p className="font-bold sha text-4xl pt-10 pb-2 text-[#4A4947]">Shipping Address : </p>
@@ -235,12 +235,12 @@ const Detail = () => {
                                             <input
                                                 type="number"
                                                 id="quantity"
-                                                value={item.quantity || 1}
+                                                value={item.quantity || 0}
                                                 onChange={(e) =>
                                                     setCartItems((prevCartItems) =>
                                                         prevCartItems.map((cartItem) =>
                                                             cartItem.productId === item.productId
-                                                                ? { ...cartItem, quantity: parseInt(e.target.value, 10) || 1 }
+                                                                ? { ...cartItem, quantity: parseInt(e.target.value, 10) || 0 }
                                                                 : cartItem
                                                         )
                                                     )
@@ -275,6 +275,7 @@ const Detail = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
   )
 }

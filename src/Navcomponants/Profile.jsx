@@ -163,6 +163,7 @@ const Profile = () => {
     <section className="Login">
       <div className="grid md:grid-cols-2 grid-cols-1 items-center">
         <div className="left md:flex justify-center items-center col-span-1">
+        
           <img
             src="/images/Logo.svg"
             alt="Logo"
@@ -171,11 +172,12 @@ const Profile = () => {
         </div>
 
         <div className="md:bg-[#faf7f0] md:col-start-2 md:mt-0 mt-14 h-screen flex flex-col justify-center items-center">
+        <div className="absolute top-3 right-4"><Link to='/'><img src="/images/mobile-Home.svg" alt="" className="mb-2" /></Link></div>
           {user ? (
             <div className="flex flex-col justify-center items-center gap-7">
               <h2 className="text-2xl">
                 Welcome,{" "}
-                <span className="font-bold">{user?.Name || "User"}</span>!
+                <span className="">{user?.Name || "User"}</span>!
               </h2>
               <Link to="/products">
                 <button
@@ -186,7 +188,7 @@ const Profile = () => {
                 </button>
               </Link>
               <button
-                className="font-bold text-xl bg-red-400 px-10 py-2 rounded-2xl hover:bg-red-600"
+                className=" text-xl bg-red-400 px-10 py-2 rounded-2xl hover:bg-red-600"
                 onClick={handleLogout}
               >
                 Logout
@@ -194,7 +196,7 @@ const Profile = () => {
             </div>
           ) : (
             <>
-              <h2 className="text-3xl font-bold md:font-semibold">
+              <h2 className="text-3xl  md:">
                 {isSignUp ? "Sign-Up" : "Sign-In"}
               </h2>
 
@@ -204,7 +206,7 @@ const Profile = () => {
               >
                 {isSignUp && (
                   <div className="phone-no">
-                    <label className="md:text-[#676666] text-white font-semibold text-xl ">
+                    <label className="md:text-[#676666] text-white  text-xl ">
                       Name:
                     </label>
                     <input
@@ -213,48 +215,48 @@ const Profile = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-6 py-2 rounded-full"
+                      className="w-full px-6 py-2 rounded-full border-[1.5px] border-black" 
                     />
                   </div>
                 )}
 
                 <div className="mt-4">
-                  <label className="md:text-[#676666] text-white font-semibold text-xl">Phone:</label>
+                  <label className="md:text-[#676666] text-white  text-xl">Phone:</label>
                   <input
                     type="text"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-6 py-2 rounded-full"
+                    className="w-full px-6 py-2 rounded-full border-[1.5px] border-black"
                   />
                 </div>
 
                 <div className="mt-4">
-                  <label className="md:text-[#676666] text-white font-semibold text-xl">Password:</label>
+                  <label className="md:text-[#676666] text-white  text-xl">Password:</label>
                   <input
                     type="password"
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-6 py-2 rounded-full "
+                    className="w-full px-6 py-2 rounded-full  border-[1.5px] border-black"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="text-center w-full bg-[#475AFF] text-white font-bold text-2xl mt-10 py-2 rounded-full"
+                  className="text-center w-full bg-[#475AFF] text-white  text-2xl mt-10 py-2 rounded-full"
                 >
                   {isSignUp ? "Sign Up" : "Sign In"}
                 </button>
               </form>
 
-              {error && <p className="error">{error}</p>}
+              {error && <p className="error text-xl mt-2 text-red-600">{error}</p>}
 
               <button
                 onClick={() => setIsSignUp(!isSignUp)}
-                className="mt-6 font-bold text-xl"
+                className="mt-6  text-xl"
               >
                 {isSignUp
                   ? "Already have an account? Sign In"
@@ -263,9 +265,9 @@ const Profile = () => {
 
               <button
                 onClick={handleGoogleSignIn}
-                className="flex mt-6 items-center font-bold text-xl"
+                className="flex mt-6 items-center  text-xl"
               >
-                Continue with Google <img src="/images/google.svg" alt="" />
+                Continue with Google 
               </button>
             </>
           )}

@@ -60,12 +60,12 @@ const AddToCart = () => {
 
 
   if (error) {
-    return <div className="cart-error">{error}</div>;
+    return <div className="cart-error flex justify-center items-center text-4xl h-[80vh] text-red-600">{error}</div>;
   }
 
 
   return (
-    <div className="bg-[#faf7f0] px-4 lg:px-20 lg:h-[78vh] text-[#4A4947] max-[800px]:pb-16" >
+    <div className=" px-4 lg:px-20 lg:h-[78vh] text-[#4A4947] max-[800px]:pb-16" >
       <div className="">
         <p className="font-bold sha text-4xl pt-10 pb-2 text-[#4A4947]">
           Total Cart Items: {cartItems.length}
@@ -186,6 +186,8 @@ const AddToCart = () => {
           </div>
         </div>
       </div>
+
+   \
     </div>
   );
 };

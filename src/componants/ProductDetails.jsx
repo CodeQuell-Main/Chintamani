@@ -54,10 +54,10 @@ const ProductDetails = () => {
     };
 
     if (loading) return <Loder/>;
-    if (error) return <p style={{ color: "red" }}>{error}</p>;
+    if (error) return <div className="cart-error flex justify-center items-center text-4xl h-[80vh] text-red-600">{error}</div>;
 
     return (
-        <div className="product-details-container bg-[#faf7f0] max-[800px]:pb-16">
+        <div className="product-details-container  max-[800px]:pb-24">
           <div className="">
 
             <div className="flex max-[750px]:flex-col max-[750px]:justify-center  justify-evenly items-center">
