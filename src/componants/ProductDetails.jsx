@@ -9,7 +9,6 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [newReview, setNewReview] = useState('');
 
     // Fetch product details
     useEffect(() => {
@@ -17,7 +16,6 @@ const ProductDetails = () => {
             .get(`http://localhost:4000/api/fetch-product/${productId}`)
             .then((response) => {
                 setProduct(response.data);
-                setReviews(response.data.reviews || []);
                 setLoading(false);
             })
             .catch((err) => {
@@ -87,7 +85,6 @@ const ProductDetails = () => {
                         <i className="fa-solid mx-1 fa-star text-yellow-500"></i>
                         <i className="fa-solid mx-1 fa-star text-yellow-500"></i>
                       </div>
-                      <p className="text-[#676666] font-semibold">100+ Review</p>
                     </div>
 
                     <p className="price font-bold text-2xl text-left">{product.productPrice}/kg</p>

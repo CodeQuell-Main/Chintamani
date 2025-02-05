@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import { useState , useEffect } from 'react'
 
 const Detail = () => {
@@ -15,6 +16,7 @@ const Detail = () => {
         state: "",
         zipCode: "",
     });
+    const neviget = useNavigate();
 
     const handleInputChange = (e) => {
         setFormData({
@@ -102,6 +104,22 @@ const Detail = () => {
                 });
     
                 alert("Order stored successfully!");
+
+                await axios.post("http://localhost:4000/api/send-receipt", {
+                    email: formData.email,
+                    fullName: formData.fullName,
+                    orderID,
+                    cartItems: updatedCartItems,
+                    totalAmount: totalPrice,
+                });
+    
+                alert("Receipt sent to your email!");
+                
+                await axios.delete("http://localhost:4000/api/clear-cart", {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+                });
+                neviget("/")
+
             } else {
                 alert("Payment verification failed! Order not stored.");
             }

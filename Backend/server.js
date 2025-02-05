@@ -6,6 +6,7 @@ import cors from "cors";
 import Razorpay from "razorpay";
 import dotenv from "dotenv";
 import crypto from "crypto";
+import nodemailer from "nodemailer"
 import Masale from "./data/Masale.js";
 import Konkan from "./data/Konkan.js";
 import Flour from "./data/Flour.js";
@@ -22,7 +23,7 @@ app.use(cors());
 
 // Database connection
 mongoose
-    .connect("mongodb://localhost:27017/Chintamani")
+    .connect("mongodb+srv://omkar:Omkar%401404@cluster0.j9qon.mongodb.net/Chintamani?retryWrites=true&w=majority")
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("Database connection failed:", err));
 
@@ -450,5 +451,100 @@ app.post("/api/verify-payment", (req, res) => {
         res.status(400).json({ message: "Invalid signature" });
     }
 });
+
+app.delete("/api/clear-cart", authenticateToken, async (req, res) => {
+    try {
+        await User.findByIdAndUpdate(req.userId, { AddToCart: [] }); 
+        res.status(200).json({ message: "Cart cleared successfully" });
+    } catch (error) {
+        console.error("Error clearing cart:", error);
+        res.status(500).json({ message: "Failed to clear cart" });
+    }
+});
+
+app.post("/api/send-receipt", async (req, res) => {
+    try {
+        const { email, fullName, orderID, cartItems, totalAmount } = req.body;
+
+        // Create transport for sending emails
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
+            }
+        });
+
+        // Generate current date and time
+        const dateTime = new Date().toLocaleString();
+
+        // Generate order details in HTML format
+        let productList = cartItems.map(item => {
+            return `<li>${item.productName} (x${item.quantity}) - ₹${item.productPrice * item.quantity}</li>`;
+        }).join("");
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: `Receipt for Your Order - ${orderID}`,
+            html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;">
+                    <div style="text-align: center;">
+                        <img src="cid:logo" width="150" alt="Company Logo" style="margin-bottom: 10px;">
+                    </div>
+                    <h2 style="color: #333; text-align: center;">Thank you for your purchase, ${fullName}!</h2>
+                    <p style="color: #555; text-align: center;">Your order <strong>${orderID}</strong> has been confirmed.</p>
+                    <p style="text-align: center;"><strong>Date & Time:</strong> ${dateTime}</p>
+                    <hr style="border: 1px solid #ddd;">
+                    
+                    <h3 style="color: #333;">Order Details:</h3>
+                    <ul style="padding: 0 20px; color: #555;">
+                        ${productList}
+                    </ul>
+                    
+                    <h3 style="color: #333;">Total Amount Paid: <span style="color: #27ae60;">₹${totalAmount}</span></h3>
+                    <p style="text-align: center; color: #555;">Thank You for Purchasing from Chintamani Food Products!</p>
+        
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="https://chintamanifoodproducts.in" style="display: inline-block; background-color: #007BFF; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Visit Our Store</a>
+                    </div>
+        
+                    <!-- Styled CodeQuell Section -->
+                    <div style="text-align: center; margin-top: 40px; border-top: 2px solid #ddd; padding-top: 20px;">
+                        <p style="color: #555; font-size: 16px; margin-bottom: 10px;">Developed By <strong style="color: #007BFF;">CodeQuell</strong></p>
+                        <img src="cid:codequell" width="150" alt="CodeQuell Logo" style="margin-bottom: 10px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        <div>
+                            <a href="https://codequell.com" style="font-size: 14px; color: #007BFF; text-decoration: none;">Contact To CodeQuell</a>
+                        </div>
+                    </div>
+                </div>
+            `,
+            attachments: [
+                {
+                    filename: 'Logo.png',
+                    path: '../public/Logo.png',
+                    cid: 'logo' // Same CID as used in the img tag
+                },
+                {
+                    filename: 'logo-color.jpg',
+                    path: '../public/logo-color.jpg',
+                    cid: 'codequell' // Same CID as used in the img tag
+                }
+            ]
+        };
+        
+        
+
+        // Send email
+        await transporter.sendMail(mailOptions);
+
+        res.json({ message: "Receipt sent successfully!" });
+
+    } catch (error) {
+        console.error("Error sending receipt:", error);
+        res.status(500).json({ message: "Failed to send receipt" });
+    }
+});
+
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
