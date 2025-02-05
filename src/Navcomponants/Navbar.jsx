@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-<div className="bg-white max-[900px]:hidden ">
+<div className="bg-white  ">
            <nav>
              <ul className="grid grid-cols-10 items-center mx-20">
                <img src="/images/Logo.svg" alt="Logo" className="md:w-20 w-20 " />
@@ -27,7 +27,7 @@ const Navbar = () => {
                  <Link to="/addtocart"><img src="/images/cart.png" alt="" className="w-12" /></Link>
                </li>
        
-               <li className="text-black   justify-self-center">
+               <li className="text-black max-[900px]:col-end-10   justify-self-center">
                  <Link to="/profile" className="flex flex-col items-center justify-center">
                    <img src="/images/Profile.svg" alt="Profile" className="w-16" />
                  </Link>

@@ -24,7 +24,7 @@ const App = () => {
   return (
     
       <div>
-      {/* {!hideNavAndFooterRoutes.includes(location.pathname) && <Navbar />} */}
+      {!hideNavAndFooterRoutes.includes(location.pathname) && <Navbar />}
         <Routes>
           <Route path='/' element={<Landing/>} />
           <Route path='/Home' element={<Home />} />
