@@ -5,6 +5,9 @@ import { useState, useEffect } from 'react';
 import { useState , useEffect } from 'react';
 import Loder from '../componants/Loder';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
