@@ -5,12 +5,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 
 // Replace the values below with your actual Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAZRObIv4DFDgkMm-img6gb6XEOuXdtMcI",
-  authDomain: "chintamani-a2019.firebaseapp.com",
-  projectId: "chintamani-a2019",
-  storageBucket: "chintamani-a2019.appspot.com",
-  messagingSenderId: "171610965046",
-  appId: "1:171610965046:web:someUniqueAppId",
+  apiKey: "AIzaSyBduOAu8RydiA0KhnVZabaG29j7m5pyM2U",
+  authDomain: "chintamani-41a4b.firebaseapp.com",
+  projectId: "chintamani-41a4b",
+  storageBucket: "chintamani-41a4b.firebasestorage.app",
+  messagingSenderId: "448898026380",
+  appId: "1:448898026380:web:65bb61bbed71d8623ba4a9",
 };
 
 const app = initializeApp(firebaseConfig);

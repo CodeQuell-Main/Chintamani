@@ -74,7 +74,7 @@ const Home = () => {
           <h1 className="lg:text-6xl text-4xl  max-[600px]:text-center font-bold">Welcome</h1>
           <h2 className='text-2xl  max-[600px]:text-center font-semibold mt-6'>We Are Locally Crafted Food</h2>
           <p className="mt-8 max-[600px]:text-center ">Congue, gravida. Placeat nibh sunt semper elementum anim! Integer lectus debitis auctor. Molestias vivamus eligendi ut, cupidatat nisl iaculis etiam! Laboris aenean .</p>
-          <Link to="" className=""><button type="button" className='flex justify-center items-center gap-6 bg-[#ff770f] px-6 py-3 rounded-full text-white mt-10 hover:mt-14 transition-all'><i class="fa-solid fa-arrow-right"></i> More About Us</button></Link>
+          <Link to="" className=""><button type="button" className='flex justify-center items-center gap-6 bg-[#ff770f] px-6 py-3 rounded-full text-white mt-10 hover:mt-14 transition-all'><i className="fa-solid fa-arrow-right"></i> More About Us</button></Link>
         </div>
 
         <div className="max-[600px]:hidden">
