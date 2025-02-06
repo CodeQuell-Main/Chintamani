@@ -197,7 +197,7 @@ const Detail = () => {
 
                                 <div className="flex flex-col justify-center items-start">
                                     <label htmlFor="" className=''>Phone Number</label>
-                                    <input type="number" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} id="" className="border-2 bg-[#faf7f0] outline-none px-6 py-1 border-[#b1745780] rounded-xl w-full font-family: var(--font-serif);" />
+                                    <input type="tel" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} id="" className="border-2 bg-[#faf7f0] outline-none px-6 py-1 border-[#b1745780] rounded-xl w-full font-family: var(--font-serif);" />
                                 </div>
 
                                 <div className="flex flex-col max-[1000px]:col-span-2 justify-center items-start">

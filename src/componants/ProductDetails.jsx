@@ -127,8 +127,8 @@ const ProductDetails = () => {
            
             
           <div className="grid grid-cols-6 max-[800px]:grid-cols-1 max-[800px]:gap-4 mx-44 max-[1000px]:mx-12 max-[500px]:mx-6 font-semibold mt-8 ">
-              <div className="text-xl max-[800px]:text-[24px] font-extrabold">Product Description : </div>
-              <div className="col-span-5 font-medium text-left text-sm product-details leading-6">{product.productDetail}</div>
+              <div className="text-xl max-[800px]:text-[24px] ">Product Description : </div>
+              <div className="col-span-5 text-left text-sm product-details leading-6">{product.productDetail}</div>
             </div>           
         </div>
     );

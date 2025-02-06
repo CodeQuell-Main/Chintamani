@@ -75,8 +75,8 @@ const Profile = () => {
       const userResponse = await axios.get(
         "http://localhost:4000/api/user-details",
         {
-          headers: { Authorization: `Bearer ${token}` }, 
-        } 
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
       setUser(userResponse.data);
@@ -85,14 +85,14 @@ const Profile = () => {
       if (phone === "1234567890" && password === "1234") {
         navigate("/admin");
       } else {
-        navigate("/"); 
+        navigate("/");
       }
     } catch (err) {
       setError(err.response?.data || "Error during sign-in");
     } finally {
       setLoading(false);
     }
-};
+  };
 
 
   //sing in with google
@@ -145,15 +145,15 @@ const Profile = () => {
     return localStorage.getItem("token") !== null;
   };
 
-  if(loading){
-    return <Loder/>
+  if (loading) {
+    return <Loder />
   }
 
   return (
     <section className="Login">
       <div className="grid md:grid-cols-2 grid-cols-1 items-center">
         <div className="left md:flex justify-center items-center col-span-1">
-        
+
           <img
             src="/images/Logo.svg"
             alt="Logo"
@@ -162,7 +162,7 @@ const Profile = () => {
         </div>
 
         <div className="md:bg-[#ffffff] md:col-start-2 md:mt-0 mt-14 h-screen flex flex-col justify-center items-center">
-        <div className="absolute top-3 right-4"><Link to='/'><img src="/images/mobile-Home.svg" alt="" className="mb-2" /></Link></div>
+          <div className="absolute top-3 right-4"><Link to='/'><img src="/images/mobile-Home.svg" alt="" className="mb-2" /></Link></div>
           {user ? (
             <div className="flex flex-col justify-center items-center gap-7">
               <h2 className="text-2xl">
@@ -205,7 +205,7 @@ const Profile = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-6 py-2 rounded-full border-[1.5px] border-black" 
+                      className="w-full px-6 py-2 rounded-full border-[1.5px] border-black"
                     />
                   </div>
                 )}
@@ -248,16 +248,21 @@ const Profile = () => {
                 onClick={() => setIsSignUp(!isSignUp)}
                 className="mt-6  text-xl"
               >
-                {isSignUp
-                  ? "Already have an account? Sign In"
-                  : "Create a new account? Sign Up"}
+                {isSignUp ? (
+                  "Already have an account? Sign In"
+                ) : (
+                  <>
+                    Create a new account?{" "}
+                    <span className="lg:text-blue-600 text-orange-500">Sign Up</span>
+                  </>
+                )}
               </button>
 
               <button
                 onClick={handleGoogleSignIn}
                 className="flex mt-6 items-center  text-xl border-[#ff770f] border-2 px-6 py-2 rounded-full hover:bg-[#ff770f] hover:text-white   "
               >
-                Continue with Google 
+                Continue with Google
               </button>
             </>
           )}
@@ -265,7 +270,7 @@ const Profile = () => {
       </div>
     </section>
 
-    
+
   );
 };
 
