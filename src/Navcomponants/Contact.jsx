@@ -59,8 +59,8 @@ const Contact = () => {
 
     return (
         <>
-            <section className="bg-white">
-                <div className="my-10 md:mx-20">
+            <section className="bg-white max-[900px]:pb-14">
+                <div className="md:my-10 md:mx-20">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3835.0904507752107!2d73.68408397490273!3d16.008806284661972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc00fa01124bf8f%3A0x9e0197b92204693c!2sCHINTAMANI%20FOOD%20PRODUCTS!5e0!3m2!1sen!2sin!4v1738748614302!5m2!1sen!2sin" className='w-full h-[50vh] border-2 loas'></iframe>
                 </div>
 
@@ -126,22 +126,30 @@ const Contact = () => {
 
                 </div>
 
-                <div className="mt-12 bg-slate-700 py-6">
-                    <p className="text-center md:text-xl text-[10px] text-white flex justify-center  items-center gap-3 ">All right reserved <li className=""><Link to="/Privacy-Policy">Privacy policy</Link></li> <li>&copy; Chintamani Food Products</li>  <li><a href="https://codequell.com/" target='_blank' className="">Developed by CodeQuell</a></li>  </p>
-
-                    <div className="flex justify-center items-center col-end-12 gap-4 py-6">
-                        <Link to=""> <i className="fa-brands fa-facebook-f text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
-                        <Link to=""> <i className="fa-brands fa-twitter text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
-                        <Link to=""> <i className="fa-brands fa-instagram text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
-                        <Link to=""> <i className="fa-brands fa-linkedin-in text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
-                    </div>
-
-                    <Link to="https://codequell.com/">
-                        <div className="flex justify-center items-center">
-                            <img src="/logo-color.png" alt="" className="w-32" />
+                 <div className="mt-12 bg-slate-700 py-4 grid md:grid-cols-8 max-[600px]:grid-cols-1">
+                
+                
+                        <div className="flex flex-col gap-4 md:col-span-2">
+                
+                          <div className="flex justify-center items-center gap-4">
+                            <Link to=""> <i className="fa-brands fa-facebook-f text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
+                            <Link to=""> <i className="fa-brands fa-x-twitter text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
+                            <Link to=""> <i className="fa-brands fa-instagram text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
+                            <Link to=""> <i className="fa-brands fa-linkedin-in text-white bg-[#ff770f] rounded-full p-3 transform duration-500 hover:bg-white hover:text-[#ff770f]"></i></Link>
+                
+                          </div>
+                
+                          <Link to="https://codequell.com/" >
+                            <div className="flex justify-center items-center">
+                              <img src="/images/codequell-white.png" alt="" className="w-32" />
+                            </div>
+                          </Link>
                         </div>
-                    </Link>
-                </div>
+                
+                        <p className="md:col-span-5 md:col-end-9 max-[600px]:py-3 text-center md:text-lg text-[10px] text-white flex justify-center  items-center gap-3 ">All right reserved <li className=""><Link to="/Privacy-Policy">Privacy policy</Link></li> <li>&copy; Chintamani Food Products</li>  <li><a href="https://codequell.com/" target='_blank' className="">Developed by CodeQuell</a></li>  </p>
+                
+                
+                      </div>
             </section>
 
         </>

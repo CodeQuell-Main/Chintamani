@@ -161,7 +161,7 @@ const Profile = () => {
           />
         </div>
 
-        <div className="md:bg-[#faf7f0] md:col-start-2 md:mt-0 mt-14 h-screen flex flex-col justify-center items-center">
+        <div className="md:bg-[#ffffff] md:col-start-2 md:mt-0 mt-14 h-screen flex flex-col justify-center items-center">
         <div className="absolute top-3 right-4"><Link to='/'><img src="/images/mobile-Home.svg" alt="" className="mb-2" /></Link></div>
           {user ? (
             <div className="flex flex-col justify-center items-center gap-7">
@@ -172,7 +172,7 @@ const Profile = () => {
               <Link to="/products">
                 <button
                   type="button"
-                  className="bg-[#439C33] hover:bg-[#358327] px-12 py-2 rounded-2xl text-2xl text-white "
+                  className="bg-[#ff770f] hover:bg-[#ff7700] px-12 py-2 rounded-2xl text-2xl text-white "
                 >
                   Explore
                 </button>
@@ -255,7 +255,7 @@ const Profile = () => {
 
               <button
                 onClick={handleGoogleSignIn}
-                className="flex mt-6 items-center  text-xl"
+                className="flex mt-6 items-center  text-xl border-[#ff770f] border-2 px-6 py-2 rounded-full hover:bg-[#ff770f] hover:text-white   "
               >
                 Continue with Google 
               </button>
