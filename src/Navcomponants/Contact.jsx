@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useState , useEffect } from 'react';
 import Loder from '../componants/Loder';
 import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';

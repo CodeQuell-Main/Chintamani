@@ -527,7 +527,7 @@ app.post("/api/send-receipt", async (req, res) => {
                 },
                 {
                     filename: 'logo-color.jpg',
-                    path: '../public/logo-color.jpg',
+                    path: '../public/logo-color.png',
                     cid: 'codequell' // Same CID as used in the img tag
                 }
             ]

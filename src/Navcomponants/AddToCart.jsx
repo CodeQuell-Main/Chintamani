@@ -74,9 +74,9 @@ const AddToCart = () => {
 
 
   return (
-    <div className=" px-4 lg:px-20 lg:h-[78vh] text-[#4A4947] max-[800px]:pb-16" >
+    <div className=" bg-white px-4 lg:px-20 lg:h-[78vh] text-[#4A4947] max-[800px]:pb-16" >
       <div className="">
-        <p className="font-bold sha text-4xl pt-10 pb-2 text-[#4A4947]">
+        <p className=" sha text-4xl pt-10 pb-2 text-[#4A4947]">
           Total Cart Items: {cartItems.length}
         </p>
       </div>
@@ -86,19 +86,19 @@ const AddToCart = () => {
           <div className="grid grid-cols-4 pt-4">
             <div className="flex justify-center items-center gap-4">
               <img src="/images/Packing.svg" alt="productdetails" className="max-[800px]:w-10 max-[500px]:hidden" />
-              <p className="text-xl max-[800px]:text-sm font-bold">Product Details</p>
+              <p className="text-xl max-[800px]:text-sm ">Product Details</p>
             </div>
             <div className="flex justify-center items-center gap-4">
               <img src="/images/MoneyBagRupee.svg" alt="productprice" className="max-[800px]:w-10 max-[500px]:hidden" />
-              <p className="text-xl max-[800px]:text-sm font-bold">Price</p>
+              <p className="text-xl max-[800px]:text-sm ">Price</p>
             </div>
             <div className="flex justify-center items-center gap-4">
               <img src="/images/Eye.svg" alt="productQuntity" className="max-[800px]:w-10 max-[500px]:hidden" />
-              <p className="text-xl max-[800px]:text-sm font-bold">Quantity</p>
+              <p className="text-xl max-[800px]:text-sm ">Quantity</p>
             </div>
             <div className="flex justify-center items-center gap-4">
               <img src="/images/Cash.svg" alt="Total" className="max-[800px]:w-10 max-[500px]:hidden" />
-              <p className="text-xl max-[800px]:text-sm font-bold">Total</p>
+              <p className="text-xl max-[800px]:text-sm ">Total</p>
             </div>
           </div>
 
@@ -118,18 +118,18 @@ const AddToCart = () => {
                           <img src="/images/Delete.svg" alt="Delete" className="w-8" />
                         </button>
 
-                        <div className="flex flex-col justify-center items-center text-lg font-bold">
+                        <div className="flex flex-col justify-center items-center text-lg ">
                           <img
                             src={item.productImage}
                             alt={item.productName}
                             className="cart-item-image w-36 justify-self-center"
                           />
-                          <p className="text-lg font-bold justify-self-center max-[800px]:text-sm">{item.productName}</p>
+                          <p className="text-lg  justify-self-center max-[800px]:text-sm">{item.productName}</p>
                         </div>
                       </div>
 
                       <div className="cart-item-info justify-self-center">
-                        <p className="price text-lg font-bold">{item.productPrice}</p>
+                        <p className="price text-lg ">{item.productPrice}</p>
                       </div>
 
                       <div className=" justify-self-center">
@@ -142,7 +142,7 @@ const AddToCart = () => {
                       </div>
 
                       <div className="justify-self-center">
-                        <p className="text-lg font-bold ">
+                        <p className="text-lg  ">
                           ₹{(item.productPrice * (item.quantity || 1)).toFixed(2)}
                         </p>
                       </div>
@@ -151,33 +151,33 @@ const AddToCart = () => {
                 ))}
               </ul>
             ) : (
-              <p className="cart-empty">Your cart is empty.</p>
+              <p className="cart-empty flex justify-center items-center text-4xl h-[20vh] text-red-600 ">Your cart is empty.</p>
             )}
           </div>
         </div>
 
         <div className="col-span-2 px-6 py-4">
           <div className="border-2 border-[#B17457] px-6 py-8 rounded-2xl">
-            <h1 className="font-bold text-4xl max-[1200px]:text-xl">Cart Totals</h1>
+            <h1 className=" text-4xl max-[1200px]:text-xl">Cart Totals</h1>
             <div className="grid  gap-4 mt-8 pb-4">
-              <p className="text-2xl max-[1200px]:text-lg grid grid-cols-2 text-left font-semibold">
+              <p className="text-xl max-[1200px]:text-lg grid grid-cols-2 text-left ">
                 Total Price:{" "}
-                <span className="text-[#B17457] font-bold text-center">
+                <span className="text-[#B17457]  text-center">
                   ₹{totalPrice.toFixed(2)}
                 </span>
               </p>
             </div>
 
-            <p className="text-2xl max-[1200px]:text-lg grid grid-cols-2 text-left font-semibold mt-6">
+            <p className="text-xl max-[1200px]:text-lg grid grid-cols-2 text-left  mt-6">
                 Shipping Charge:{" "}
-                <span className="text-[#B17457] font-bold text-center">
+                <span className="text-[#B17457]  text-center">
                 Depends on delivery
                 </span>
               </p>
 
-              <p className="text-2xl max-[1200px]:text-lg grid grid-cols-2 text-left font-semibold mt-6">
+              <p className="text-xl max-[1200px]:text-lg grid grid-cols-2 text-left  mt-6">
                 Total Price:{" "}
-                <span className="text-[#B17457] font-bold text-center">
+                <span className="text-[#B17457]  text-center">
                   ₹{(parseFloat(totalPrice.toFixed(2)))}
                 </span>
               </p>
@@ -186,7 +186,7 @@ const AddToCart = () => {
                 <Link to="/detail" className="w-full">
                     <button
                       type="button"
-                      className="bg-[#B17457] py-2 font-bold text-white text-lg w-full  rounded-2xl"
+                      className="bg-[#B17457] py-2  text-white text-lg w-full  rounded-2xl"
                     >
                       Go to Order
                     </button>                    
@@ -196,7 +196,7 @@ const AddToCart = () => {
         </div>
       </div>
 
-   \
+   
     </div>
   );
 };

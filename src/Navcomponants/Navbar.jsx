@@ -7,7 +7,7 @@ const Navbar = () => {
 <div className="bg-white max-[900px]:bg-[#D8D2C2]  ">
            <nav>
              <ul className="grid grid-cols-10 items-center mx-20">
-               <img src="/images/Logo.svg" alt="Logo" className="md:w-20 w-20 " />
+               <img src="/images/Logo.svg" alt="Logo" className="md:w-16 w-20  " />
                
                <li className="text-black   hover:text-[#ff770f] max-[900px]:hidden col-start-6 justify-self-center">
                  <Link to="/">Home</Link>
@@ -29,7 +29,7 @@ const Navbar = () => {
        
                <li className="text-black max-[900px]:col-end-10   justify-self-center">
                  <Link to="/profile" className="flex flex-col items-center justify-center">
-                   <img src="/images/Profile.svg" alt="Profile" className="w-16" />
+                   <img src="/images/Profile.svg" alt="Profile" className="md:w-16 w-20" />
                  </Link>
                </li>
              </ul>

@@ -10,26 +10,26 @@ export default function Footer() {
             <ul className="flex justify-around items-center">
               <li>
                 <Link to="/" className='flex flex-col justify-center items-center font-bold'>
-                  <img src="/images/mobile-Home.svg" alt="Home" />
+                <i class="fa-solid fa-house text-2xl"></i>
                   <span>Home</span>
                 </Link>
               </li>
               <li>
                 <Link to="/addtocart" className='flex flex-col justify-center items-center font-bold'>
-                  <img src="/images/Mobile-cart.svg" alt="Cart" />
+                 <i class="fa-solid fa-cart-shopping text-2xl"></i>
                   <span>Cart</span>
                 </Link>
               </li>
               <li>
                 <Link to="/products" className='flex flex-col justify-center items-center font-bold'>
-                  <img src="/images/mobile-products.svg" alt="Products" />
+                <i class="fa-solid fa-utensils text-2xl"></i>
                   <span>Products</span>
                 </Link>
               </li>
 
               <li>
                 <Link to="/contact" className='flex flex-col justify-center items-center font-bold'>
-                <i className="fa-solid fa-phone text-xl"></i>
+                 <i class="fa-solid fa-phone text-2xl"></i>
                   <span>Contact</span>
                 </Link>
               </li>
