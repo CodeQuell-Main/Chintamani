@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 =======
 import { useState , useEffect } from 'react';
 import Loder from '../componants/Loder';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';
