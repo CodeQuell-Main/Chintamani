@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import Razorpay from "razorpay";
@@ -181,7 +181,7 @@ app.post("/api/sign-up", async (req, res) => {
             return res.status(400).send("User already exists");
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await argon2.hash(password);
         const newUser = new User({ Name: name, Phone: phone, Password: hashedPassword });
         await newUser.save();
         res.status(201).send("User registered successfully");
@@ -206,7 +206,7 @@ app.post("/api/sign-in", async (req, res) => {
             return res.status(400).send("Invalid phone number or password");
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.Password);
+        const isPasswordValid = await argon2.verify(user.Password, password);
 
         if (!isPasswordValid) {
             return res.status(400).send("Invalid phone number or password");
