@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Loder from './Loder'
 import { useNavigate } from 'react-router-dom'
 import { useState , useEffect } from 'react'
 
@@ -135,6 +136,7 @@ const Detail = () => {
 
             if (!token) {
                 setError("Please sign in first.");
+                setloding(false);
                 return;
             }
 
@@ -150,6 +152,8 @@ const Detail = () => {
                 setCartItems(response.data.map(item => ({ ...item, quantity: item.quantity || 1 })));
             } catch (err) {
                 setError("Failed to fetch cart products.");
+            } finally {
+                setloding(false);
             }
         };
         fetchCartProducts();
@@ -159,6 +163,10 @@ const Detail = () => {
         (acc, item) => acc + item.productPrice * (item.quantity || 1),
         0
     );
+
+    if (Loding) {
+        return <Loder/>
+    }
 
     if (error) {
         return <div className="cart-error flex justify-center items-center text-4xl h-[80vh] text-red-600">{error}</div>;

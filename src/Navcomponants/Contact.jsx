@@ -1,5 +1,10 @@
 import React from 'react'
+<<<<<<< Updated upstream
 import { useState, useEffect } from 'react';
+=======
+import { useState , useEffect } from 'react';
+import Loder from '../componants/Loder';
+>>>>>>> Stashed changes
 import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';
 
@@ -8,10 +13,18 @@ const Contact = () => {
         name: '',
         email: '',
         message: ''
+<<<<<<< Updated upstream
     });
     const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
+=======
+      });
+      const [successMessage, setSuccessMessage] = useState('');
+      const [loading, setLoading] = useState(false);
+    
+      useEffect(() => {
+>>>>>>> Stashed changes
         emailjs.init('phT3bVQyJS6V2q99B'); // Replace with your actual User ID
     }, []);
 
@@ -24,6 +37,7 @@ const Contact = () => {
         e.preventDefault();
 
         emailjs
+<<<<<<< Updated upstream
             .send(
                 'service_q4nja4q',
                 'template_zspzjji',
@@ -44,6 +58,34 @@ const Contact = () => {
                 setSuccessMessage('Failed to send your message. Please try again.');
             });
     };
+=======
+          .send(
+            'service_q4nja4q', 
+            'template_zspzjji', 
+            {
+              from_name: formData.name,   
+              from_email: formData.email,
+              message: formData.message,
+            },
+            'phT3bVQyJS6V2q99B' 
+          )
+          .then((response) => {
+            setSuccessMessage('Your message has been sent successfully!');
+            setFormData({ name: '', email: '', message: '' });
+          })
+          .catch(() => {
+            setSuccessMessage('Failed to send your message. Please try again.');
+          })
+          .finally(() => {
+            setLoading(false);  
+          })
+      };
+
+      if(loading) {
+        return <Loder/>
+      }
+      
+>>>>>>> Stashed changes
 
 
     return (

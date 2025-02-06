@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loder from "../componants/Loder";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -22,6 +23,7 @@ const Profile = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -50,6 +52,8 @@ const Profile = () => {
       setIsSignUp(false);
     } catch (err) {
       setError(err.response?.data || "Error during sign-up");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -72,7 +76,7 @@ const Profile = () => {
         "http://localhost:4000/api/user-details",
         {
           headers: { Authorization: `Bearer ${token}` }, 
-        }
+        } 
       );
 
       setUser(userResponse.data);
@@ -85,6 +89,8 @@ const Profile = () => {
       }
     } catch (err) {
       setError(err.response?.data || "Error during sign-in");
+    } finally {
+      setLoading(false);
     }
 };
 
@@ -115,6 +121,8 @@ const Profile = () => {
       alert(message);
     } catch (error) {
       setError(error.response?.data?.message || "Error during Google Sign-In");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -128,6 +136,8 @@ const Profile = () => {
       navigate("/");
     } catch (error) {
       setError(error.message || "Error during logout");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -135,29 +145,9 @@ const Profile = () => {
     return localStorage.getItem("token") !== null;
   };
 
-  //addto cart
-  const handleAddToCart = (productId) => {
-    if (!isAuthenticated()) {
-      alert("For adding to cart, please sign in first.");
-      return;
-    }
-
-    axios
-      .post(
-        "http://localhost:4000/api/add-to-cart",
-        { productId },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      )
-      .then((response) => {
-        alert("Product added to cart successfully!");
-      })
-      .catch((error) => {
-        console.error("Error adding product to cart:", error);
-        alert("Failed to add product to cart.");
-      });
-  };
+  if(loading){
+    return <Loder/>
+  }
 
   return (
     <section className="Login">

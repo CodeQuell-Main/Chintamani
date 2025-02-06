@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Loder from "../componants/Loder";
 import { Link} from "react-router-dom";
 
 const AddToCart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchCartProducts = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
         setError("Please sign in first.");
+        setLoading(false);
         return;
       }
       try {
@@ -25,6 +28,8 @@ const AddToCart = () => {
         setCartItems(response.data);
       } catch (err) {
         setError("Failed to fetch cart products.");
+      } finally {
+        setLoading(false);
       }
     };
     fetchCartProducts();
@@ -58,6 +63,10 @@ const AddToCart = () => {
     0
   );
 
+
+  if(loading){
+    return <Loder/>
+  }
 
   if (error) {
     return <div className="cart-error flex justify-center items-center text-4xl h-[80vh] text-red-600">{error}</div>;

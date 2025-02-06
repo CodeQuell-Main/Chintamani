@@ -37,6 +37,8 @@ const ProductDetails = () => {
             return;
         }
 
+        setLoading(true);
+
         try {
             await axios.post(
                 "http://localhost:4000/api/add-to-cart",
@@ -50,6 +52,8 @@ const ProductDetails = () => {
             alert(`Added ${quantity} item(s) to the cart!`);
         } catch (err) {
             setError("Failed to add product to cart.");
+        } finally {
+            setLoading(false); // Set loading to false once the request is done
         }
     };
 

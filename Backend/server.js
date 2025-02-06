@@ -23,7 +23,7 @@ app.use(cors());
 
 // Database connection
 mongoose
-    .connect("mongodb+srv://omkar:Omkar%401404@cluster0.j9qon.mongodb.net/Chintamani?retryWrites=true&w=majority")
+    .connect("mongodb+srv://chintamanifoodproductscq:CHINTAMANI%40143@chintamani.h8ei8.mongodb.net/?retryWrites=true&w=majority&appName=chintamani")
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("Database connection failed:", err));
 
