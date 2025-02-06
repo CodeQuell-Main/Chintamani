@@ -71,7 +71,7 @@ const Contact = () => {
                             <h1 className="text-4xl font-bold ">Our Locations:</h1>
 
                             <div className="flex items-center gap-4 mt-6">
-                                <i class="fa-solid fa-location-dot text-[#ff770f] text-2xl"></i>
+                                <i className="fa-solid fa-location-dot text-[#ff770f] text-2xl"></i>
                                 <p className="">Shop No.1goverment Hospital Oop Super Grahak Bajar, near by Post Office, Kudal, Maharashtra 416520</p>
                             </div>
 
